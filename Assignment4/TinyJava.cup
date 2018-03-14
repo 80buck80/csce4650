@@ -53,6 +53,7 @@ terminal ID;
 terminal INTEGER;
 terminal UTIL;
 terminal ASTERISK;
+terminal ID;
 
 non terminal program;
 non terminal class-definition;
@@ -64,12 +65,22 @@ non terminal member-declarationList;
 non terminal staticOption;
 non terminal member-declarator;
 non terminal function-definition;
+non terminal variable-declarationList;
+non terminal variable-declaration;
+non terminal optionIdOption;
+non terminal sqBracketList;
+non terminal returnExpressionOption;
 non terminal function-declaration;
 non terminal main-declaration;
+non terminal main-declarationOption;
 non terminal type;
+non terminal argument-declaration-listOption;
+non terminal argument-declaration-listList;
 non terminal argument-declaration-list;
 non terminal argument-declaration;
 non terminal compound-statement;
+non terminal statement-listOption;
+non terminal statement-listList;
 non terminal statement-list;
 non terminal statement;
 non terminal assignment-statement;
@@ -89,47 +100,79 @@ start with program;
 
 program ::= IMPORT JAVA PERIOD UTIL PERIOD ASTERISK SEMICOLON class-definitionList ;
 
-class-definitionList := class-definition | class-definitionList class-definition ;
+class-definitionList ::= class-definition | class-definitionList class-definition ;
 
 class-definition ::= CLASS classId LCURLBRACKET member-listList RCURLBRACKET ;
 
-member-listList := member-list | member-listList member-list
+member-listList ::= member-list | member-listList member-list ;
 
 member-list ::= member-declaration member-declarationList ;
 
-member-declarationList := member-declaration | member-declarationList member-declaration ;
+member-declarationList ::= member-declaration | member-declarationList member-declaration ;
 
 member-declaration ::= member-declarator SEMICOLON | function-definition ;
 
 member-declarator ::= staticOption variable-declaration ;
 
-staticOption := STATIC | ;
+staticOption ::= STATIC | ;
 
+function-definition ::= function-declaration LCURLBRACKET
+                        variable-declarationList
+                        statement-listOption
+                        returnExpressionOption RCURLBRACKET ;
 
+returnExpressionOption ::= RETURN expression SEMICOLON | ;
 
+variable-declarationList ::= variable-declarationList variable-declaration SEMICOLON | ;
 
-function-definition ::= function-declaration {
-                        { variable-declaration ;}
-                        [statement-list]
-                        [return expression ;] }
+function-declaration ::= PUBLIC staticOption type function-identifier
+                         LPAREN argument-declaration-listOption RPAREN
+                         | main-declaration ;
 
+variable-declaration ::= type objectId objectIdOption objectIdOption ;
 
-function-declaration ::= public [static] type function-identifier
-( [argument-declaration-list] )
-| main-declaration
-variable-declaration ::= type object-identifier [ { [ ] } = new int [ integer ] { [ integer ] } ]
-main-declaration ::= [static Scanner in = new Scanner ( System . in ) ;]
-public static void main ( String args [ ] )
-type ::= class-identifier | int | boolean
+objectIdOption ::= sqBracketList EQ NEW INT LSQRBRACKET INTEGER RSQRBRACKET sqBracketList ;
+
+sqBracketList ::= sqBracketList LSQRBRACKET RSQRBRACKET | sqBracketList LSQRBRACKET INTEGER RSQRBRACKET | ;
+
+main-declaration ::= main-declarationOption
+                     PUBLIC STATIC VOID MAIN LPAREN STRING ARGS LSQRBRACKET RSQRBRACKET RPAREN ;
+
+main-declarationOption ::= STATIC SCANNER IN EQ NEW SCANNER LPAREN SYSTEM PERIOD IN RPAREN SEMICOLON | ;
+
+type ::= class-identifier | INT | BOOLEAN ;
+
+argument-declaration-listOption ::= argument-declaration-list | ;
+
 argument-declaration-list ::= argument-declaration {, argument-declaration}
-argument-declaration :== type object-identifier { [ ] }
-compound-statement ::= { statement-list }
-statement-list ::= statement {statement}
+
+argument-declaration-listList ::= argument-declaration-listList COMMA argument-declaration | ;
+
+argument-declaration ::== type objectId sqBracketList ;
+
+compound-statement ::= LSQRBRACKET statement-list RSQRBRACKET ;
+
+statement-listOption ::= statement-list | ;
+
+statement-list ::= statement statement-listList ;
+
+statement-listList ::= statement-listList statement-list | ;
+
 statement ::= compound-statement
 | assignment-statement ;
 | if ( expression ) statement [else statement]
 | while ( expression ) statement
 | System . out . println ( expression );
+
+
+
+
+
+
+
+
+
+
 assignment-statement ::= variable = expression
 | variable = new class-identifier ()
 | variable = in . nextInt ()
@@ -140,3 +183,9 @@ primary-expression ::= object | integer | true | false | ( expression )
 object ::= variable | function-call
 variable ::= this | [object .] object-identifier {[ expression ]}
 function-call ::= [object .] function-identifier ( [expression-list] )
+
+classId ::= ID ;
+
+objectId ::= ID ;
+
+functionId ::= ID ;
