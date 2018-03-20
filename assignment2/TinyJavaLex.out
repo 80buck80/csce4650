@@ -1,0 +1,191 @@
+Script started on Tue 06 Feb 2018 06:39:56 PM CST
+]0;adb0026@cse01: ~/csce4650/assignment2adb0026@cse01:~/csce4650/assignment2$ jfla[Kex TinyJava.jflex
+Reading "TinyJava.jflex"
+Constructing NFA : 326 states in NFA
+Converting NFA to DFA : 
+.............................................................................................................................................................
+159 states before minimization, 151 states in minimized DFA
+Old file "TinyJavaLexer.java" saved as "TinyJavaLexer.java~"
+Writing code to "TinyJavaLexer.java"
+]0;adb0026@cse01: ~/csce4650/assignment2adb0026@cse01:~/csce4650/assignment2$ javac -cp .:java-cup-11a-runtime.jar PL0Lex.java[1PLex.java[1Pex.java[1PLex.javaTLex.javaiLex.javanLex.javayLex.javaJLex.javaaLex.javavLex.javaaLex.java[C[C[C[C[C[C[C[C
+]0;adb0026@cse01: ~/csce4650/assignment2adb0026@cse01:~/csce4650/assignment2$ java -cp .:java-cup-11a-runtime.jar PL0Lex < quotrem.pl0[1P[1P[1P[1@T[1@i[1@n[1@y[1@J[1@a[1@v[1@a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[Ktest1.java
+Source Program
+--------------
+
+// Test1.java
+
+import java.util.*;
+
+class Test1 {
+
+  public static void main (String args []) {
+    int my_list [] = new int [100];
+    int my_list_tl [] = new int [100];
+    int r; int h; int i;
+    {
+      r = 2;
+      while (r < 5) {
+        my_list [r - 2] = r;
+        r = r + 1;
+      }
+      h = my_list [0];
+      i = r;
+      while (i > 0) {
+	my_list_tl [i - 1] = my_list [i];
+	i = i - 1;
+      }
+    }
+    System . out . println (h);
+    System . out . println (my_list_tl [0]);
+  }
+}
+
+List of Tokens
+--------------
+
+Symbol: (operator, /)
+Symbol: (operator, /)
+Symbol: (identifier, Test1)
+Symbol: (punctuation, .)
+Symbol: (identifier, java)
+Symbol: (keyword, import)
+Symbol: (keyword, java.util.*)
+Symbol: (keyword, class)
+Symbol: (identifier, Test1)
+Symbol: (operator, {)
+Symbol: (keyword, public)
+Symbol: (keyword, static)
+Symbol: (keyword, void)
+Symbol: (keyword, main)
+Symbol: (operator, ()
+Symbol: (keyword, String)
+Symbol: (keyword, args)
+Symbol: (operator, [
+Symbol: (operator, ]
+Symbol: (operator, ))
+Symbol: (operator, {)
+Symbol: (keyword, int)
+Symbol: (identifier, my_list)
+Symbol: (operator, [
+Symbol: (operator, ]
+Symbol: (operator, =)
+Symbol: (keyword, new)
+Symbol: (keyword, int)
+Symbol: (operator, [
+Symbol: (integer, 100)
+Symbol: (operator, ]
+Symbol: (punctuation, ;)
+Symbol: (keyword, int)
+Symbol: (identifier, my_list_tl)
+Symbol: (operator, [
+Symbol: (operator, ]
+Symbol: (operator, =)
+Symbol: (keyword, new)
+Symbol: (keyword, int)
+Symbol: (operator, [
+Symbol: (integer, 100)
+Symbol: (operator, ]
+Symbol: (punctuation, ;)
+Symbol: (keyword, int)
+Symbol: (identifier, r)
+Symbol: (punctuation, ;)
+Symbol: (keyword, int)
+Symbol: (identifier, h)
+Symbol: (punctuation, ;)
+Symbol: (keyword, int)
+Symbol: (identifier, i)
+Symbol: (punctuation, ;)
+Symbol: (operator, {)
+Symbol: (identifier, r)
+Symbol: (operator, =)
+Symbol: (integer, 2)
+Symbol: (punctuation, ;)
+Symbol: (keyword, while)
+Symbol: (operator, ()
+Symbol: (identifier, r)
+Symbol: (operator, <)
+Symbol: (integer, 5)
+Symbol: (operator, ))
+Symbol: (operator, {)
+Symbol: (identifier, my_list)
+Symbol: (operator, [
+Symbol: (identifier, r)
+Symbol: (operator, -)
+Symbol: (integer, 2)
+Symbol: (operator, ]
+Symbol: (operator, =)
+Symbol: (identifier, r)
+Symbol: (punctuation, ;)
+Symbol: (identifier, r)
+Symbol: (operator, =)
+Symbol: (identifier, r)
+Symbol: (operator, +)
+Symbol: (integer, 1)
+Symbol: (punctuation, ;)
+Symbol: (operator, })
+Symbol: (identifier, h)
+Symbol: (operator, =)
+Symbol: (identifier, my_list)
+Symbol: (operator, [
+Symbol: (integer, 0)
+Symbol: (operator, ]
+Symbol: (punctuation, ;)
+Symbol: (identifier, i)
+Symbol: (operator, =)
+Symbol: (identifier, r)
+Symbol: (punctuation, ;)
+Symbol: (keyword, while)
+Symbol: (operator, ()
+Symbol: (identifier, i)
+Symbol: (operator, >)
+Symbol: (integer, 0)
+Symbol: (operator, ))
+Symbol: (operator, {)
+Symbol: (identifier, my_list_tl)
+Symbol: (operator, [
+Symbol: (identifier, i)
+Symbol: (operator, -)
+Symbol: (integer, 1)
+Symbol: (operator, ]
+Symbol: (operator, =)
+Symbol: (identifier, my_list)
+Symbol: (operator, [
+Symbol: (identifier, i)
+Symbol: (operator, ]
+Symbol: (punctuation, ;)
+Symbol: (identifier, i)
+Symbol: (operator, =)
+Symbol: (identifier, i)
+Symbol: (operator, -)
+Symbol: (integer, 1)
+Symbol: (punctuation, ;)
+Symbol: (operator, })
+Symbol: (operator, })
+Symbol: (keyword, System)
+Symbol: (punctuation, .)
+Symbol: (keyword, out)
+Symbol: (punctuation, .)
+Symbol: (keyword, println)
+Symbol: (operator, ()
+Symbol: (identifier, h)
+Symbol: (operator, ))
+Symbol: (punctuation, ;)
+Symbol: (keyword, System)
+Symbol: (punctuation, .)
+Symbol: (keyword, out)
+Symbol: (punctuation, .)
+Symbol: (keyword, println)
+Symbol: (operator, ()
+Symbol: (identifier, my_list_tl)
+Symbol: (operator, [
+Symbol: (integer, 0)
+Symbol: (operator, ]
+Symbol: (operator, ))
+Symbol: (punctuation, ;)
+Symbol: (operator, })
+Symbol: (operator, })
+
+]0;adb0026@cse01: ~/csce4650/assignment2adb0026@cse01:~/csce4650/assignment2$ exit
+exit
+
+Script done on Tue 06 Feb 2018 06:41:54 PM CST
