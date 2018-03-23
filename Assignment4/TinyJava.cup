@@ -1,5 +1,6 @@
 import java_cup.runtime.*;
 
+terminal EOF;
 terminal IMPORT;
 terminal JAVA;
 terminal CLASS;
@@ -25,207 +26,172 @@ terminal NEXTINT;
 terminal TRUE;
 terminal FALSE;
 terminal THIS;
-terminal NE;
-terminal LE;
-terminal GE;
-terminal LT;
-terminal GT;
-terminal AND;
-terminal OR;
+terminal NE, LE, GE, LT, GT;
+terminal AND, OR, NOT;
 terminal COMMENT;
 terminal EQ;
 terminal SEMICOLON;
-terminal LCURLBRACKET;
-terminal RCURLBRACKET;
-terminal LSQRBRACKET;
-terminal RSQRBRACKET;
-terminal LPAREN;
-terminal RPAREN;
+terminal LCURLBRACKET, RCURLBRACKET, LSQRBRACKET, RSQRBRACKET, LPAREN, RPAREN;
 terminal ASSIGN;
 terminal PERIOD;
 terminal COMMA;
-terminal PLUS;
-terminal MINUS;
-terminal TIMES;
-terminal DIVIDE;
-terminal NOT;
+terminal PLUS, MINUS, TIMES, DIVIDE;
 terminal ID;
 terminal INTEGER;
 terminal UTIL;
 terminal ASTERISK;
 
-
 non terminal program;
 non terminal class_definition;
-non terminal class_definitionList;
 non terminal member_list;
-non terminal member_listList;
 non terminal member_declaration;
-non terminal member_declarationList;
-non terminal staticOption;
 non terminal member_declarator;
 non terminal function_definition;
-non terminal variable_declarationList;
-non terminal variable_declaration;
-non terminal optionIdOption;
-non terminal sqBracketList;
-non terminal returnExpressionOption;
 non terminal function_declaration;
+non terminal variable_declaration;
 non terminal main_declaration;
-non terminal main_declarationOption;
 non terminal type;
-non terminal argument_declaration_listOption;
-non terminal argument_declaration_listList;
 non terminal argument_declaration_list;
 non terminal argument_declaration;
 non terminal compound_statement;
-non terminal statement_listOption;
-non terminal statement_listList;
 non terminal statement_list;
 non terminal statement;
 non terminal assignment_statement;
-non terminal elseOption;
 non terminal expression;
-non terminal andExpression;
-non terminal relationalOperator;
-non terminal relationalExpression;
-non terminal arithmeticExpression;
-non terminal addingOperator;
-non terminal multiplyingOperator;
-non terminal unaryOperator;
 non terminal expression_list;
-non terminal expression_listList;
-non terminal expressionListOption;
 non terminal term;
 non terminal primary_expression;
 non terminal object;
-non terminal objectOption;
 non terminal variable;
-non terminal expressionList;
 non terminal function_call;
+non terminal class_definitionList;
 non terminal classId;
-non terminal objectId;
+non terminal member_listList;
+non terminal member_declarationList;
+non terminal staticOption;
+non terminal variable_declarationList;
+non terminal statement_listOption;
+non terminal return_expressionOption;
 non terminal functionId;
-non terminal objectIdOption ;
-non terminal class_identifier ;
-non terminal factor ;
+non terminal argument_declaration_listOption;
+non terminal argument_declaration_listList
+non terminal objectId;
+non terminal objectIdOption;
+non terminal sqBracketList;
+non terminal main_declarationOption;
+non terminal argument_declarationList;
+non terminal statementList;
+non terminal else_statementOption;
+non terminal binary_operator;
+non terminal expression_listList;
+non terminal unary_operator;
+non terminal objectOption;
+non terminal expressionListOption;
+
 
 start with program;
 
 program ::= IMPORT JAVA PERIOD UTIL PERIOD ASTERISK SEMICOLON class_definitionList ;
 
-class_definitionList ::= class_definition | class_definitionList class_definition ;
+class_definitionList ::= class_definition class_definitionList | ;
 
 class_definition ::= CLASS classId LCURLBRACKET member_listList RCURLBRACKET ;
 
-member_listList ::= member_list | member_listList member_list ;
+member_listList ::= member_list member_listList | ;
 
 member_list ::= member_declaration member_declarationList ;
 
-member_declarationList ::= member_declaration | member_declarationList member_declaration ;
+member_declarationList ::= member_declaration member_declarationList | ;
 
 member_declaration ::= member_declarator SEMICOLON | function_definition ;
 
-member_declarator ::= staticOption variable_declaration ;
+member_declarator ::= staticOption variable_declaration;
 
 staticOption ::= STATIC | ;
 
-function_definition ::= function_declaration LCURLBRACKET
-                        variable_declarationList
+function_definition ::= function_declaration
+                        LCURLBRACKET variable_declarationList
                         statement_listOption
-                        returnExpressionOption RCURLBRACKET ;
+                        return_expressionOption RCURLBRACKET ;
 
-returnExpressionOption ::= RETURN expression SEMICOLON | ;
-
-variable_declarationList ::= variable_declarationList variable_declaration SEMICOLON | ;
-
-function_declaration ::= PUBLIC staticOption type functionId
-                         LPAREN argument_declaration_listOption RPAREN
-                         | main_declaration ;
-
-variable_declaration ::= type objectId objectIdOption objectIdOption ;
-
-objectIdOption ::= sqBracketList EQ NEW INT LSQRBRACKET INTEGER RSQRBRACKET sqBracketList ;
-
-sqBracketList ::= sqBracketList LSQRBRACKET RSQRBRACKET | sqBracketList LSQRBRACKET INTEGER RSQRBRACKET | ;
-
-main_declaration ::= main_declarationOption
-                     PUBLIC STATIC VOID MAIN LPAREN STRING ARGS LSQRBRACKET RSQRBRACKET RPAREN ;
-
-main_declarationOption ::= STATIC SCANNER IN EQ NEW SCANNER LPAREN SYSTEM PERIOD IN RPAREN SEMICOLON | ;
-
-type ::= class_identifier | INT | BOOLEAN ;
-
-argument_declaration_listOption ::= argument_declaration_list | ;
-
-argument_declaration_list ::= argument_declaration LCURLBRACKET argument_declaration RCURLBRACKET ;
-
-argument_declaration_listList ::= argument_declaration_listList COMMA argument_declaration | ;
-
-argument_declaration ::= type objectId sqBracketList ;
-
-compound_statement ::= LSQRBRACKET statement_list RSQRBRACKET ;
+variable_declarationList ::= variable_declaration variable_declarationList SEMICOLON | ;
 
 statement_listOption ::= statement_list | ;
 
-statement_list ::= statement statement_listList ;
+return_expressionOption ::= RETURN expression SEMICOLON | ;
 
-statement_listList ::= statement_listList statement_list | ;
+function_declaration ::= PUBLIC staticOption type functionId argument_declaration_listOption |
+                         main_declaration ;
 
-statement ::= compound_statement
-              | assignment_statement
-              | IF LPAREN expression RPAREN statement elseOption
-              | WHILE LPAREN expression RPAREN statement
-              | SYSTEM PERIOD OUT PERIOD PRINTLN LPAREN expression RPAREN;
+argument_declaration_listOption ::= argument_declaration_listList ;
 
-elseOption ::= ELSE statement | ;
+argument_declaration_listList ::= argument_declaration_list argument_declaration_listList | ;
 
-assignment_statement ::= variable EQ expression
-                        | variable EQ NEW class_identifier LPAREN RPAREN
-                        | variable EQ IN PERIOD NEXTINT LPAREN RPAREN;
+variable_declaration ::= type objectId objectIdOption ;
 
-expression ::= expression OR andExpression | andExpression ;
+objectIdOption ::= sqBracketList ASSIGN NEW INT LSQRBRACKET INTEGER RSQRBRACKET sqBracketList | ;
 
-andExpression ::= andExpression AND relationalExpression
-                  | relationalExpression ;
+sqBracketList ::= LSQRBRACKET RSQRBRACKET sqBracketList |
+                  LSQRBRACKET INTEGER RSQRBRACKET sqBracketList | ;
 
-relationalExpression ::= relationalExpression relationalOperator arithmeticExpression
-                        | arithmeticExpression ;
+main_declaration ::= main_declarationOption
+                     PUBLIC STATIC VOID MAIN
+                     LPAREN STRING ARGS LSQRBRACKET RSQRBRACKET RPAREN ;
 
-relationalOperator ::= LT | LE | GT | GE | EQ | NE ;
+main_declarationOption ::= STATIC SCANNER IN ASSIGN
+                           NEW SCANNER
+                           LPAREN SYSTEM PERIOD IN RPAREN SEMICOLON | ;
 
-arithmeticExpression ::= term | arithmeticExpression addingOperator term ;
+type ::= classId | INT | BOOLEAN ;
 
-addingOperator ::= PLUS | MINUS ;
+argument_declaration_list ::= argument_declaration argument_declarationList ;
 
-term ::= factor | term multiplyingOperator factor ;
+argument_declarationList ::= COMMA argument_declaration argument_declarationList | ;
 
-multiplyingOperator ::= TIMES | DIVIDE ;
+argument_declaration ::= type objectId sqBracketList ;
 
-factor ::= primary_expression | unaryOperator factor ;
+compound_statement ::= LCURLBRACKET statement_list RCURLBRACKET ;
 
-unaryOperator ::= addingOperator | NOT ;
+statement_list ::= statement statementList ;
+
+statementList ::= statement statementList | ;
+
+statement ::=  compound-statement
+               | assignment-statement SEMICOLON
+               | IF LPAREN expression RPAREN statement else_statementOption
+               | WHILE LPAREN expression RPAREN statement
+               | SYSTEM PERIOD OUT PERIOD PRINTLN LPAREN expression RPAREN ;
+
+else_statementOption ::= ELSE statement | ;
+
+assignment_statement ::= variable ASSIGN expression
+                         | variable ASSIGN NEW classId LPAREN RPAREN
+                         | variable ASSIGN IN PERIOD NEXTINT LPAREN RPAREN;
+
+expression ::= term expression binary_operator expression ;
+
+binary_operator ::= AND | OR | EQ | PLUS | MINUS | TIMES | DIVIDE | ASSIGN ;
+
+expression_list ::= expression expression_listList ;
+
+expression_listList ::= COMMA expression_list expression_listList | ;
+
+term ::= primary_expression | unary_operator term;
+
+unary_operator ::= NOT ;
 
 primary_expression ::= object | INTEGER | TRUE | FALSE | LPAREN expression RPAREN ;
 
 object ::= variable | function_call ;
 
-variable ::= THIS | objectOption objectId expressionList  ;
+function_call ::= objectOption functionId LPAREN expressionListOption RPAREN ;
 
 objectOption ::= object PERIOD | ;
 
-expressionList ::= expressionList LSQRBRACKET expression RSQRBRACKET | ;
+expressionListOption ::= expression_list | ;
 
-function_call ::= objectOption functionId LPAREN expressionListOption RPAREN ;
-
-expressionListOption ::= LSQRBRACKET expression_list RSQRBRACKET | ;
-
-expression_list ::= expression expression_listList ;
-
-expression_listList ::= expression_listList COMMA expression | ;
-
-classId ::= ID ;
+functionId ::= ID ;
 
 objectId ::= ID ;
 
-functionId ::= ID ;
+classId ::= ID ;
