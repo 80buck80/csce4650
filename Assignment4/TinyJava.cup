@@ -1,6 +1,5 @@
 import java_cup.runtime.*;
 
-terminal EOF;
 terminal IMPORT;
 terminal JAVA;
 terminal CLASS;
@@ -74,7 +73,7 @@ non terminal statement_listOption;
 non terminal return_expressionOption;
 non terminal functionId;
 non terminal argument_declaration_listOption;
-non terminal argument_declaration_listList
+non terminal argument_declaration_listList;
 non terminal objectId;
 non terminal objectIdOption;
 non terminal sqBracketList;
@@ -156,8 +155,8 @@ statement_list ::= statement statementList ;
 
 statementList ::= statement statementList | ;
 
-statement ::=  compound-statement
-               | assignment-statement SEMICOLON
+statement ::=  compound_statement
+               | assignment_statement SEMICOLON
                | IF LPAREN expression RPAREN statement else_statementOption
                | WHILE LPAREN expression RPAREN statement
                | SYSTEM PERIOD OUT PERIOD PRINTLN LPAREN expression RPAREN ;
