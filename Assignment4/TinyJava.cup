@@ -16,11 +16,7 @@ terminal MAIN;
 terminal STRING;
 terminal ARGS;
 terminal BOOLEAN;
-<<<<<<< HEAD
 terminal IF;
-=======
-terminal IF ;
->>>>>>> e316bede4d7406b6d7e4b52d3539c1ec1eb58a44
 terminal ELSE;
 terminal WHILE;
 terminal OUT;
