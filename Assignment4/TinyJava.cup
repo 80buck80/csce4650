@@ -16,7 +16,7 @@ terminal MAIN;
 terminal STRING;
 terminal ARGS;
 terminal BOOLEAN;
-terminal IF
+terminal IF;
 terminal ELSE;
 terminal WHILE;
 terminal OUT;
@@ -53,6 +53,7 @@ terminal ID;
 terminal INTEGER;
 terminal UTIL;
 terminal ASTERISK;
+
 
 non terminal program;
 non terminal class_definition;
@@ -91,7 +92,6 @@ non terminal relationalExpression;
 non terminal arithmeticExpression;
 non terminal addingOperator;
 non terminal multiplyingOperator;
-non terminal relationalOperator;
 non terminal unaryOperator;
 non terminal expression_list;
 non terminal expression_listList;
@@ -154,11 +154,11 @@ type ::= class_identifier | INT | BOOLEAN ;
 
 argument_declaration_listOption ::= argument_declaration_list | ;
 
-argument_declaration_list ::= argument_declaration {, argument_declaration}
+argument_declaration_list ::= argument_declaration LCURLBRACKET argument_declaration RCURLBRACKET ;
 
 argument_declaration_listList ::= argument_declaration_listList COMMA argument_declaration | ;
 
-argument_declaration ::== type objectId sqBracketList ;
+argument_declaration ::= type objectId sqBracketList ;
 
 compound_statement ::= LSQRBRACKET statement_list RSQRBRACKET ;
 
@@ -169,9 +169,9 @@ statement_list ::= statement statement_listList ;
 statement_listList ::= statement_listList statement_list | ;
 
 statement ::= compound_statement
-              | assignment_statement ;
+              | assignment_statement
               | IF LPAREN expression RPAREN statement elseOption
-              | WHILE LPAREN expression RPAREN statement ;
+              | WHILE LPAREN expression RPAREN statement
               | SYSTEM PERIOD OUT PERIOD PRINTLN LPAREN expression RPAREN;
 
 elseOption ::= ELSE statement | ;
@@ -204,7 +204,7 @@ unaryOperator ::= addingOperator | NOT ;
 
 primary_expression ::= object | INTEGER | TRUE | FALSE | LPAREN expression RPAREN ;
 
-object ::= variable | function_call
+object ::= variable | function_call ;
 
 variable ::= THIS | objectOption objectId expressionList  ;
 
