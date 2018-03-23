@@ -16,7 +16,11 @@ terminal MAIN;
 terminal STRING;
 terminal ARGS;
 terminal BOOLEAN;
+<<<<<<< HEAD
 terminal IF;
+=======
+terminal IF ;
+>>>>>>> e316bede4d7406b6d7e4b52d3539c1ec1eb58a44
 terminal ELSE;
 terminal WHILE;
 terminal OUT;
@@ -95,16 +99,20 @@ non terminal multiplyingOperator;
 non terminal unaryOperator;
 non terminal expression_list;
 non terminal expression_listList;
+non terminal expressionListOption;
 non terminal term;
 non terminal primary_expression;
 non terminal object;
+non terminal objectOption;
 non terminal variable;
 non terminal expressionList;
 non terminal function_call;
 non terminal classId;
 non terminal objectId;
 non terminal functionId;
-
+non terminal objectIdOption ;
+non terminal class_identifier ;
+non terminal factor ;
 
 start with program;
 
@@ -135,7 +143,7 @@ returnExpressionOption ::= RETURN expression SEMICOLON | ;
 
 variable_declarationList ::= variable_declarationList variable_declaration SEMICOLON | ;
 
-function_declaration ::= PUBLIC staticOption type function_identifier
+function_declaration ::= PUBLIC staticOption type functionId
                          LPAREN argument_declaration_listOption RPAREN
                          | main_declaration ;
 
@@ -176,9 +184,9 @@ statement ::= compound_statement
 
 elseOption ::= ELSE statement | ;
 
-assignment_statement ::= variable EQUALS expression
-                        | variable EQUALS NEW class_identifier LPAREN RPAREN
-                        | variable EQUALS IN PERIOD NEXTINT LPAREN RPAREN;
+assignment_statement ::= variable EQ expression
+                        | variable EQ NEW class_identifier LPAREN RPAREN
+                        | variable EQ IN PERIOD NEXTINT LPAREN RPAREN;
 
 expression ::= expression OR andExpression | andExpression ;
 
@@ -198,7 +206,7 @@ term ::= factor | term multiplyingOperator factor ;
 
 multiplyingOperator ::= TIMES | DIVIDE ;
 
-factor ::= primaryExpression | unaryOperator factor ;
+factor ::= primary_expression | unaryOperator factor ;
 
 unaryOperator ::= addingOperator | NOT ;
 
@@ -218,7 +226,7 @@ expressionListOption ::= LSQRBRACKET expression_list RSQRBRACKET | ;
 
 expression_list ::= expression expression_listList ;
 
-expression_listList ::= expresison_listList COMMA expression | ;
+expression_listList ::= expression_listList COMMA expression | ;
 
 classId ::= ID ;
 
