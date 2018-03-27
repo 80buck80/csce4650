@@ -70,15 +70,10 @@ non terminal class_definitionList;
 non terminal classId;
 non terminal variable_declarationList;
 non terminal functionId;
-non terminal argument_declaration_listList;
 non terminal objectId;
-non terminal objectIdOption;
 non terminal sqBracketList;
-non terminal argument_declarationList;
 non terminal binary_operator;
 non terminal unary_operator;
-non terminal objectOption;
-non terminal expressionListOption;
 
 precedence nonassoc LT, LE, GT, GE, EQ, NE;
 
