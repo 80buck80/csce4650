@@ -27,7 +27,7 @@ terminal FALSE;
 terminal THIS;
 terminal NE, LE, GE, LT, GT;
 terminal AND, OR, NOT;
-terminal COMMENT;
+/*terminal COMMENT;*/
 terminal EQ;
 terminal SEMICOLON;
 terminal LCURLBRACKET, RCURLBRACKET, LSQRBRACKET, RSQRBRACKET, LPAREN, RPAREN;
@@ -39,6 +39,8 @@ terminal ID;
 terminal INTEGER;
 terminal UTIL;
 terminal ASTERISK;
+
+
 
 non terminal program;
 non terminal class_definition;
@@ -65,27 +67,28 @@ non terminal variable;
 non terminal function_call;
 non terminal class_definitionList;
 non terminal classId;
-non terminal member_listList;
-non terminal member_declarationList;
 non terminal staticOption;
 non terminal variable_declarationList;
-non terminal statement_listOption;
-non terminal return_expressionOption;
 non terminal functionId;
 non terminal argument_declaration_listOption;
 non terminal argument_declaration_listList;
 non terminal objectId;
 non terminal objectIdOption;
 non terminal sqBracketList;
-non terminal main_declarationOption;
 non terminal argument_declarationList;
-non terminal statementList;
-non terminal else_statementOption;
 non terminal binary_operator;
-non terminal expression_listList;
 non terminal unary_operator;
+non terminal relational_operator;
 non terminal objectOption;
 non terminal expressionListOption;
+
+precedence nonassoc LT, LE, GT, GE, EQ, NE;
+
+precedence left AND, OR;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+precedence left EQ;
+
 
 
 start with program;
@@ -94,28 +97,20 @@ program ::= IMPORT JAVA PERIOD UTIL PERIOD ASTERISK SEMICOLON class_definitionLi
 
 class_definitionList ::= class_definition class_definitionList | ;
 
-class_definition ::= CLASS classId LCURLBRACKET member_listList RCURLBRACKET ;
+class_definition ::= CLASS classId LCURLBRACKET member_list RCURLBRACKET ;
 
-member_listList ::= member_list member_listList | ;
-
-member_list ::= member_declaration member_declarationList ;
-
-member_declarationList ::= member_declaration member_declarationList | ;
+member_list ::= member_list member_declaration | member_declaration ;
 
 member_declaration ::= member_declarator SEMICOLON | function_definition ;
 
 member_declarator ::= STATIC variable_declaration | variable_declaration ;
 
-function_definition ::= function_declaration
-                        LCURLBRACKET variable_declarationList
-                        statement_listOption
-                        return_expressionOption RCURLBRACKET ;
+function_definition ::= function_declaration LCURLBRACKET variable_declarationList RCURLBRACKET |
+                        function_declaration LCURLBRACKET variable_declarationList statement_list RCURLBRACKET |
+                        function_declaration LCURLBRACKET variable_declarationList RETURN expression SEMICOLON RCURLBRACKET |
+                        function_declaration LCURLBRACKET variable_declarationList statement_list RETURN expression SEMICOLON RCURLBRACKET ;
 
-variable_declarationList ::= variable_declaration variable_declarationList SEMICOLON | ;
-
-statement_listOption ::= statement_list | ;
-
-return_expressionOption ::= RETURN expression SEMICOLON | ;
+variable_declarationList ::= variable_declarationList variable_declaration SEMICOLON | ;
 
 function_declaration ::= PUBLIC staticOption type functionId argument_declaration_listOption |
                          main_declaration ;
@@ -131,13 +126,11 @@ objectIdOption ::= sqBracketList ASSIGN NEW INT LSQRBRACKET INTEGER RSQRBRACKET 
 sqBracketList ::= LSQRBRACKET RSQRBRACKET sqBracketList |
                   LSQRBRACKET INTEGER RSQRBRACKET sqBracketList | ;
 
-main_declaration ::= main_declarationOption
+main_declaration ::= STATIC SCANNER IN ASSIGN
+                     NEW SCANNER
+                     LPAREN SYSTEM PERIOD IN RPAREN SEMICOLON |
                      PUBLIC STATIC VOID MAIN
                      LPAREN STRING ARGS LSQRBRACKET RSQRBRACKET RPAREN ;
-
-main_declarationOption ::= STATIC SCANNER IN ASSIGN
-                           NEW SCANNER
-                           LPAREN SYSTEM PERIOD IN RPAREN SEMICOLON | ;
 
 type ::= classId | INT | BOOLEAN ;
 
@@ -149,29 +142,24 @@ argument_declaration ::= type objectId sqBracketList ;
 
 compound_statement ::= LCURLBRACKET statement_list RCURLBRACKET ;
 
-statement_list ::= statement statementList ;
-
-statementList ::= statement statementList | ;
+statement_list ::= statement_list statement | statement ;
 
 statement ::=  compound_statement
                | assignment_statement SEMICOLON
-               | IF LPAREN expression RPAREN statement else_statementOption
+               | IF LPAREN expression RPAREN statement ELSE statement
+               /*| IF LPAREN expression RPAREN statement ELSE statement*/
                | WHILE LPAREN expression RPAREN statement
                | SYSTEM PERIOD OUT PERIOD PRINTLN LPAREN expression RPAREN ;
-
-else_statementOption ::= ELSE statement | ;
 
 assignment_statement ::= variable ASSIGN expression
                          | variable ASSIGN NEW classId LPAREN RPAREN
                          | variable ASSIGN IN PERIOD NEXTINT LPAREN RPAREN;
 
-expression ::= term expression binary_operator expression ;
+expression ::= term | expression binary_operator expression ;
 
-binary_operator ::= AND | OR | EQ | PLUS | MINUS | TIMES | DIVIDE | ASSIGN ;
+binary_operator ::= AND | OR | EQ | PLUS | MINUS | TIMES | DIVIDE | LT | LE | GT | GE | NE ;
 
-expression_list ::= expression expression_listList ;
-
-expression_listList ::= COMMA expression_list expression_listList | ;
+expression_list ::= expression_list COMMA expression | expression ;
 
 term ::= primary_expression | unary_operator term;
 
@@ -181,9 +169,11 @@ primary_expression ::= object | INTEGER | TRUE | FALSE | LPAREN expression RPARE
 
 object ::= variable | function_call ;
 
-function_call ::= objectOption functionId LPAREN expressionListOption RPAREN ;
+variable ::= THIS |
+             objectId LSQRBRACKET expression RSQRBRACKET |
+             object PERIOD objectId LSQRBRACKET expression RSQRBRACKET ;
 
-objectOption ::= object PERIOD | ;
+function_call ::= objectOption functionId LPAREN expressionListOption RPAREN ;
 
 expressionListOption ::= expression_list | ;
 

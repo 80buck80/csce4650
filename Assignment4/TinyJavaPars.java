@@ -9,7 +9,7 @@ public class TinyJavaPars {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      PL0Parser parser =
+      TinyJavaParser parser =
         new TinyJavaParser (new TinyJavaLexer (System . in, symbolFactory));
       parser . parse ();
     }
