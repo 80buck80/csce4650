@@ -1,10 +1,10 @@
-// TinyCPPParsST.java
+// TinyJavaParsST.java
 
-// This program is a parser for TinyC++ which also constructs the symbol table.  
+// This program is a parser for TinyC++ which also constructs the symbol table.
 
 import java_cup . runtime . *;
 
-public class TinyCPPParsST {
+public class TinyJavaParsST {
 
   public static void main (String args []) throws java.io.IOException {
 
@@ -14,8 +14,8 @@ public class TinyCPPParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      TinyCPPParserST parser = 
-        new TinyCPPParserST (new TinyCPPLexer (System . in, symbolFactory));
+      TinyJavaParserST parser =
+        new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
       SymbolTable env = (SymbolTable) parserValue . value;
       env . print ("Source Program");
