@@ -13,13 +13,20 @@ terminal ARGS, BOOLEAN, CLASS, ELSE, FALSE, IF, IMPORT, IN, INT, JAVA, MAIN;
 terminal NEXTINT, NEW, OUT, PRINTLN, PUBLIC, RETURN, SCANNER, STATIC, STRING;
 terminal SYSTEM, THIS, TRUE, UTIL, VOID, WHILE;
 
-#------------------------------------------------------------------------------
+
+
+
+
 non terminal SymbolTable program;
 non terminal Type simpleTypeName;
 non terminal Declarator declarator;
 non terminal classSpecifier;
 non terminal declaration;
-#------------------------------------------------------------------------------
+
+
+
+
+
 non terminal classDefinitionList;
 non terminal classDefinition;
 non terminal memberList;
@@ -66,20 +73,25 @@ non terminal String objectId;
 non terminal String functionId;
 
 start with program;
-#------------------------------------------------------------------------------
+
+
+
+
 
 program ::= IMPORT JAVA DOT UTIL DOT TIMES SEMICOLON
             {: env = new SymbolTable (null); /* start new scope */ :}
             classDefinitionList {: RESULT = env; :} ;
-#------------------------------------------------------------------------------
+
+
+
+
+
 
 classDefinitionList ::= classDefinition | classDefinitionList classDefinition ;
 
 classDefinition ::= CLASS classId LBRACE memberList RBRACE ;
 
 memberList ::= memberList memberDeclaration | ;
-
-#memberDeclaration ::= memberDeclarator SEMICOLON | functionDefinition ;
 
 memberDeclarator ::= staticOption variableDeclaration ;
 
@@ -91,7 +103,17 @@ functionDefinition ::= functionDeclaration LBRACE
   | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE
   | functionDeclaration LBRACE returnStatementOption RBRACE ;
 
-#------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 functionDeclaration ::=
     simpleTypeName:type functionId:id
     {:
@@ -141,7 +163,15 @@ declarator ::=
         new ArrayType (Integer . parseInt (dimension), decl . type ()));
     :} ;
 
-#------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 variableDeclarationList ::= variableDeclaration SEMICOLON
   | variableDeclarationList variableDeclaration SEMICOLON ;
@@ -164,7 +194,19 @@ type ::= classId | INT | BOOLEAN ;
 
 argumentDeclarationListOption ::= argumentDeclarationList | ;
 
-#------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 argumentDeclarationList ::= argumentDeclarationList COMMA argumentDeclaration declarator:decl
   {:
     env . enterVar (decl . id (), decl . type ());
@@ -194,7 +236,17 @@ memberDeclaration ::=
       env . enterVar (decl . id (), decl . type ());
     :}
   | functionDefinition ;
-#------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 argumentDeclaration ::= type objectId subscriptDeclarationList ;
 
@@ -254,6 +306,24 @@ subscriptList ::= subscriptList LBRACK expression RBRACK | ;
 
 functionCall ::= functionId LPAREN expressionListOption RPAREN
   | object DOT functionId LPAREN expressionListOption RPAREN ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 classId ::= ID:id {: RESULT = id; :} ;
 
