@@ -17,11 +17,17 @@ terminal SYSTEM, THIS, TRUE, UTIL, VOID, WHILE;
 
 
 
+
+
 non terminal SymbolTable program;
 non terminal Type simpleTypeName;
 non terminal Declarator declarator;
 non terminal classSpecifier;
 non terminal declaration;
+non terminal declaratorList;
+
+
+
 
 
 
