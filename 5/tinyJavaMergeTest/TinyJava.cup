@@ -134,12 +134,14 @@ functionDeclaration ::=
     :}
 
   | PUBLIC STATIC type functionId LPAREN argumentDeclarationListOption RPAREN
-  | mainDeclaration
+    {:
+    currentEnv . enterFuncCode (id, ""); /* add code to function entry */
+    env = env . parent (); /* restore env */
+    :}
 
-  {:
-  currentEnv . enterFuncCode (id, ""); /* add code to function entry */
-  env = env . parent (); /* restore env */
-  :};
+  | mainDeclaration;
+
+
 
 declaration ::= classSpecifier SEMICOLON
   | declarator:decl SEMICOLON
