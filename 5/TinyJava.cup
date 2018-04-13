@@ -124,7 +124,7 @@ mainDeclaration ::=
        env = new SymbolTable();
        env.enterVar("String", "args");
        other.enterFunction("void", "main", "String args[]", env, "");
-    :};
+    :}
   | PUBLIC STATIC VOID MAIN LPAREN STRING ARGS LBRACK RBRACK RPAREN
     {: other = env; /* temp stores previous environment */
        env = new SymbolTable();
@@ -136,7 +136,7 @@ type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: R
 
 argumentDeclarationListOption ::= argumentDeclarationList:arg {: RESULT = arg; :} | {:RESULT = ""; :};
 
-argumentDeclarationList ::= argumentDeclarationList:argl COMMA argumentDeclaration:arg {: RESULT = argl + ", " + arg; :};
+argumentDeclarationList ::= argumentDeclarationList:argl COMMA argumentDeclaration:arg {: RESULT = argl + ", " + arg; :}
   | argumentDeclaration:arg {: RESULT = arg; :} ;
 
 argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t, id); RESULT = t + " " + id; :};
