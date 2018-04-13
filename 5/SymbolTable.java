@@ -8,37 +8,48 @@ import java.util.*;
 class SymbolTableEntry {
 
   private int category;
-  private int constValue;
-  private SymbolTable procEnv;
-  private String procCode;
+  private String returnType;
+  private String args;
+  private SymbolTable environment;
+  private String code;
 
-  public SymbolTableEntry (int cat) {
+
+  //CLASS CONSTRUCTOR
+  public SymbolTableEntry (int cat, SymbolTable env) {
     category = cat;
+    environment = env;
   }
 
-  public SymbolTableEntry (int cat, int val) {
+  //FUNCTION CONSTRUCTOR
+  public SymbolTableEntry (int cat, String rt, String a, SymbolTable env, String c) {
     category = cat;
-    constValue = val;
+    returnType = rt;
+    args = a;
+    environment = env;
+    code = c;
   }
 
-  public SymbolTableEntry (int cat, SymbolTable env, String code) {
+  //VARIABLE CONSTRUCTOR
+  public SymbolTableEntry (int cat, String rt) {
     category = cat;
-    procEnv = env;
-    procCode = code;
+    returnType = rt;
   }
 
-  public int category () { return category; }
 
-  public int value () { return constValue; }
+  public int getCategory () { return category; }
 
-  public SymbolTable procEnv () { return procEnv; }
+  public SymbolTable getEnvironment () { return procEnv; }
 
-  public String procCode () { return procCode; }
+  public String getCode () { return code; }
+
+  public String getReturnType () { return returnType; }
+
+  public String getArgs () { return args; }
 
   public String toString () {
     String printString = Category . toString (category);
-    if (category == Category . CONSTANT)
-      printString = printString + "(" + constValue + ")";
+    // if (category == Category . CONSTANT)
+    //   printString = printString + "(" + constValue + ")";
     return printString;
   }
 
@@ -68,21 +79,21 @@ public class SymbolTable {
   // The enterConst function enters a constant id and its value into the
   // symbol table.
 
-  public void enterConst (String id, int value) {
-    enter (id, new SymbolTableEntry (Category . CONSTANT, value));
+  public void enterClass (String id, SymbolTable env) {
+    enter (id, new SymbolTableEntry (Category . CLASS, env));
   }
 
   // The enterVar function enters a variable id into the symbol table.
 
-  public void enterVar (String id) {
-    enter (id, new SymbolTableEntry (Category . VARIABLE));
+  public void enterFunction (String type, String id, String args, SymbolTable env, "") {
+    enter (id, new SymbolTableEntry (Category . FUNCTION, type, args, env, ""));
   }
 
   // The enterProc function enters a procedure id, its local symbol table and
   // syntax tree into the symbol table.
 
-  public void enterProc (String id, SymbolTable env, String code) {
-    enter (id, new SymbolTableEntry (Category . PROCEDURE, env, code));
+  public void enterVar (String id, String rt) {
+    enter (id, new SymbolTableEntry (Category . VARIABLE, String rt));
   }
 
   // The entry function returns the symbol table entry for the id.
@@ -123,7 +134,7 @@ public class SymbolTable {
         System . out . print (" ");
       System . out . print (" ");
       System . out . println (idEntry);
-      if (idEntry . category () == Category . PROCEDURE)
+      if (idEntry . category () == Category . FUNCTION)
         procedureList . put (id, idEntry);
     }
     Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
