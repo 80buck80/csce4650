@@ -1,0 +1,205 @@
+import java_cup.runtime.*;
+
+action code {: SymbolTable currentEnv, env, other; :};
+
+terminal ID, INTEGER;
+terminal AND, OR, NOT;
+terminal LT, LE, GT, GE, EQ, NE;
+terminal PLUS, MINUS, TIMES, SLASH;
+terminal SEMICOLON, DOT, COMMA;
+terminal LPAREN, RPAREN, LBRACK, RBRACK, LBRACE, RBRACE, ASSIGN;
+terminal ARGS, BOOLEAN, CLASS, ELSE, FALSE, IF, IMPORT, IN, INT, JAVA, MAIN;
+terminal NEXTINT, NEW, OUT, PRINTLN, PUBLIC, RETURN, SCANNER, STATIC, STRING;
+terminal SYSTEM, THIS, TRUE, UTIL, VOID, WHILE;
+
+non terminal program;
+non terminal classDefinitionList;
+non terminal classDefinition;
+non terminal memberList;
+non terminal memberDeclaration;
+non terminal memberDeclarator;
+non terminal staticOption;
+non terminal functionDefinition;
+non terminal functionDeclaration;
+non terminal variableDeclarationList;
+non terminal variableDeclaration;
+non terminal arrayDeclaration;
+non terminal subscriptDeclarationList;
+non terminal dimensionList;
+non terminal mainDeclaration;
+non terminal type;
+non terminal argumentDeclarationListOption;
+non terminal argumentDeclarationList;
+non terminal argumentDeclaration;
+non terminal compoundStatement;
+non terminal statementList;
+non terminal statement;
+non terminal assignmentStatement;
+non terminal returnStatementOption;
+non terminal elseOption;
+non terminal expressionListOption;
+non terminal expressionList;
+non terminal expression;
+non terminal andExpression;
+non terminal relationalExpression;
+non terminal arithmeticExpression;
+non terminal term;
+non terminal factor;
+non terminal primaryExpression;
+non terminal addingOperator;
+non terminal multiplyingOperator;
+non terminal relationalOperator;
+non terminal unaryOperator;
+non terminal object;
+non terminal variable;
+non terminal subscriptList;
+non terminal functionCall;
+non terminal classId;
+non terminal objectId;
+non terminal functionId;
+
+start with program;
+
+program ::= IMPORT JAVA DOT UTIL DOT TIMES SEMICOLON
+            {: env = new SymbolTable() :} /*create new symbol table */
+            classDefinitionList
+            {: RESULT = env; :}; /* gives program env */
+
+classDefinitionList ::= classDefinition | classDefinitionList classDefinition ;
+
+classDefinition ::= CLASS classId:id
+                    LBRACE
+                    {: currentEnv = env; :} /* save current env in a temp variable for later */
+                    {: env = new SymbolTable(); :} /* create new symbol table for a class */
+                    memberList
+                    {: currentEnv.enterClass(args); :} /* give the class to the higher level environment */
+                    {: env = currentEnv; :} /* restore higher level environment */
+                    RBRACE ;
+
+memberList ::= memberList memberDeclaration | ;
+
+memberDeclaration ::= memberDeclarator SEMICOLON | functionDefinition ;
+
+memberDeclarator ::= staticOption variableDeclaration ;
+
+staticOption ::= STATIC | ;
+
+functionDefinition ::= functionDeclaration LBRACE
+    variableDeclarationList statementList returnStatementOption RBRACE {: env = other :}
+  | functionDeclaration LBRACE statementList returnStatementOption RBRACE {: env = other :}
+  | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE {: env = other :}
+  | functionDeclaration LBRACE returnStatementOption RBRACE ;
+
+functionDeclaration ::=
+    PUBLIC type:t functionId:id LPAREN
+    {: other = env;  env = new SymbolTable(); :}
+    argumentDeclarationListOption:arg RPAREN
+    {: other.enterFunction(t, id, args, env, ""); :} /* give the function to the class symbol table */
+
+  | PUBLIC STATIC type:t functionId:id LPAREN
+    {: other = env; env = new SymbolTable(); :} /* create new symbol table for function */
+    argumentDeclarationListOption:arg RPAREN
+    {: other.enterFunction(t, id, args, env, ""):} /* give the function to the class symbol table */
+  | mainDeclaration ;
+
+variableDeclarationList ::= variableDeclaration SEMICOLON
+  | variableDeclarationList variableDeclaration SEMICOLON ;
+
+variableDeclaration ::= type:t objectId:id
+                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
+                        | type:t objectId:id
+                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
+                        arrayDeclaration ;
+
+arrayDeclaration ::= subscriptDeclarationList ASSIGN NEW INT dimensionList ;
+
+subscriptDeclarationList ::= subscriptDeclarationList LBRACK RBRACK | ;
+
+dimensionList ::= dimensionList LBRACK INTEGER RBRACK | LBRACK INTEGER RBRACK ;
+
+mainDeclaration ::=
+    STATIC SCANNER IN ASSIGN NEW SCANNER LPAREN SYSTEM DOT IN RPAREN SEMICOLON
+    PUBLIC STATIC VOID MAIN LPAREN STRING ARGS LBRACK RBRACK RPAREN
+    {: other = env; /* temp stores previous environment */
+       env = new SymbolTable();
+       env.enterVar("String", "args");
+       other.enterFunction("void", "main", "String args[]", env, "");
+    :};
+  | PUBLIC STATIC VOID MAIN LPAREN STRING ARGS LBRACK RBRACK RPAREN
+    {: other = env; /* temp stores previous environment */
+       env = new SymbolTable();
+       env.enterVar("String", "args");
+       other.enterFunction("void", "main", "String args[]", env, "");
+    :};
+
+type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: RESULT = "boolean"; :} ;
+
+argumentDeclarationListOption ::= argumentDeclarationList:arg {: RESULT = arg; :} | {:RESULT = ""; :};
+
+argumentDeclarationList ::= argumentDeclarationList:argl COMMA argumentDeclaration:arg {: RESULT = argl + ", " + arg; :};
+  | argumentDeclaration:arg {: RESULT = arg; :} ;
+
+argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t, id); RESULT = t + " " + id; :};
+
+compoundStatement ::= LBRACE statementList RBRACE ;
+
+statementList ::= statementList statement | statement ;
+
+statement ::= compoundStatement
+  | assignmentStatement SEMICOLON
+  | IF LPAREN expression RPAREN statement elseOption
+  | WHILE LPAREN expression RPAREN statement
+  | SYSTEM DOT OUT DOT PRINTLN LPAREN expression RPAREN SEMICOLON ;
+
+assignmentStatement ::= variable ASSIGN expression
+  | variable ASSIGN NEW classId LPAREN RPAREN
+  | variable ASSIGN IN DOT NEXTINT LPAREN RPAREN ;
+
+returnStatementOption ::= RETURN expression SEMICOLON | ;
+
+elseOption ::= ELSE statement | ;
+
+expressionListOption ::= expressionList | ;
+
+expressionList ::= expressionList COMMA expression | expression ;
+
+expression ::= expression OR andExpression | andExpression ;
+
+andExpression ::= andExpression AND relationalExpression
+  | relationalExpression ;
+
+relationalExpression ::=
+    arithmeticExpression relationalOperator arithmeticExpression
+  | arithmeticExpression ;
+
+relationalOperator ::= LT | LE | GT | GE | EQ | NE ;
+
+arithmeticExpression ::= term | arithmeticExpression addingOperator term ;
+
+addingOperator ::= PLUS | MINUS ;
+
+term ::= factor | term multiplyingOperator factor ;
+
+multiplyingOperator ::= TIMES | SLASH ;
+
+factor ::= primaryExpression | unaryOperator factor ;
+
+unaryOperator ::= addingOperator | NOT ;
+
+primaryExpression ::= object | INTEGER | TRUE | FALSE
+  | LPAREN expression RPAREN ;
+
+object ::= variable | functionCall ;
+
+variable ::= THIS | objectId subscriptList | object DOT objectId subscriptList ;
+
+subscriptList ::= subscriptList LBRACK expression RBRACK | ;
+
+functionCall ::= functionId LPAREN expressionListOption RPAREN
+  | object DOT functionId LPAREN expressionListOption RPAREN ;
+
+classId ::= ID:id {: RESULT = id; :} ;
+
+objectId ::= ID:id {: RESULT = id; :} ;
+
+functionId ::= ID:id {: RESULT = id; :} ;
