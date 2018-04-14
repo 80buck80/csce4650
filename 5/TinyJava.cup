@@ -61,7 +61,7 @@ non terminal functionId;
 start with program;
 
 program ::= IMPORT JAVA DOT UTIL DOT TIMES SEMICOLON
-            {: env = new SymbolTable() :} /*create new symbol table */
+            {: env = new SymbolTable(); :} /*create new symbol table */
             classDefinitionList
             {: RESULT = env; :}; /* gives program env */
 
@@ -85,9 +85,9 @@ memberDeclarator ::= staticOption variableDeclaration ;
 staticOption ::= STATIC | ;
 
 functionDefinition ::= functionDeclaration LBRACE
-    variableDeclarationList statementList returnStatementOption RBRACE {: env = other :}
-  | functionDeclaration LBRACE statementList returnStatementOption RBRACE {: env = other :}
-  | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE {: env = other :}
+    variableDeclarationList statementList returnStatementOption RBRACE {: env = other; :}
+  | functionDeclaration LBRACE statementList returnStatementOption RBRACE {: env = other; :}
+  | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE {: env = other; :}
   | functionDeclaration LBRACE returnStatementOption RBRACE ;
 
 functionDeclaration ::=
@@ -99,7 +99,7 @@ functionDeclaration ::=
   | PUBLIC STATIC type:t functionId:id LPAREN
     {: other = env; env = new SymbolTable(); :} /* create new symbol table for function */
     argumentDeclarationListOption:arg RPAREN
-    {: other.enterFunction(t, id, args, env, ""):} /* give the function to the class symbol table */
+    {: other.enterFunction(t, id, args, env, ""); :} /* give the function to the class symbol table */
   | mainDeclaration ;
 
 variableDeclarationList ::= variableDeclaration SEMICOLON
