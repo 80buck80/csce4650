@@ -153,7 +153,7 @@ public class SymbolTable {
         procedureIterator . next ();
       String procedureName = entry . getKey ();
       SymbolTableEntry idEntry = entry . getValue ();
-      idEntry . procEnv () . print (procedureName);
+      idEntry . getEnvironment () . print (procedureName);
     }
   }
 
