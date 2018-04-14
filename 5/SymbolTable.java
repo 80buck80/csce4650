@@ -5,9 +5,12 @@ import java.util.*;
 // SymbolTableEntry is a class to represent the symbol table entries
 // for PL/0 programs.
 
+enum Category {CLASS, FUNCTION, VARIABLE};
+
+
 class SymbolTableEntry {
 
-  private int category;
+  private Category category;
   private String returnType;
   private String args;
   private SymbolTable environment;
@@ -36,9 +39,9 @@ class SymbolTableEntry {
   }
 
 
-  public int getCategory () { return category; }
+  public Category getCategory () { return category; }
 
-  public SymbolTable getEnvironment () { return procEnv; }
+  public SymbolTable getEnvironment () { return environment; }
 
   public String getCode () { return code; }
 
@@ -46,10 +49,16 @@ class SymbolTableEntry {
 
   public String getArgs () { return args; }
 
+  // public String toString () {
+  //   String printString = Category . toString (category);
+  //   // if (category == Category . CONSTANT)
+  //   //   printString = printString + "(" + constValue + ")";
+  //   return printString;
+  // }
   public String toString () {
-    String printString = Category . toString (category);
-    // if (category == Category . CONSTANT)
-    //   printString = printString + "(" + constValue + ")";
+    String printString = category . name ();
+    if (category == Category . VARIABLE || category == Category . FUNCTION)
+      printString = printString + " " + type;
     return printString;
   }
 
