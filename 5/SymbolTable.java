@@ -18,13 +18,13 @@ class SymbolTableEntry {
 
 
   //CLASS CONSTRUCTOR
-  public SymbolTableEntry (int cat, SymbolTable env) {
+  public SymbolTableEntry (Category cat, SymbolTable env) {
     category = cat;
     environment = env;
   }
 
   //FUNCTION CONSTRUCTOR
-  public SymbolTableEntry (int cat, String rt, String a, SymbolTable env, String c) {
+  public SymbolTableEntry (Category cat, String rt, String a, SymbolTable env, String c) {
     category = cat;
     returnType = rt;
     args = a;
@@ -33,7 +33,7 @@ class SymbolTableEntry {
   }
 
   //VARIABLE CONSTRUCTOR
-  public SymbolTableEntry (int cat, String rt) {
+  public SymbolTableEntry (Category cat, String rt) {
     category = cat;
     returnType = rt;
   }
