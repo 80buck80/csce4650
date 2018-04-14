@@ -92,7 +92,7 @@ public class SymbolTable {
   // The enterProc function enters a procedure id, its local symbol table and
   // syntax tree into the symbol table.
 
-  public void enterVar (String id, String rt) {
+  public void enterVar (String rt, String id) {
     enter (id, new SymbolTableEntry (Category . VARIABLE, rt));
   }
 
