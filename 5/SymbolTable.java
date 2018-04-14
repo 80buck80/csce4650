@@ -39,7 +39,7 @@ class SymbolTableEntry {
   }
 
 
-  public Category getCategory () { return category; }
+  public Category category () { return category; }
 
   public SymbolTable getEnvironment () { return environment; }
 
