@@ -58,7 +58,7 @@ class SymbolTableEntry {
   public String toString () {
     String printString = category . name ();
     if (category == Category . VARIABLE || category == Category . FUNCTION)
-      printString = printString + " " + type;
+      printString = printString + " " + returnType;
     return printString;
   }
 
