@@ -136,7 +136,7 @@ type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: R
 
 argumentDeclarationListOption ::= argumentDeclarationList:arg {: RESULT = arg; :} | {:RESULT = ""; :};
 
-argumentDeclarationList ::= argumentDeclarationList:arg COMMA argumentDeclaration:arg {: RESULT = args + ", " + arg; :}
+argumentDeclarationList ::= argumentDeclarationList:arg COMMA argumentDeclaration:arg {: RESULT = arg + ", " + arg; :}
   | argumentDeclaration:arg {: RESULT = arg; :} ;
 
 argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t.toString(), id.toString()); RESULT = t + " " + id; :};
