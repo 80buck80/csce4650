@@ -106,9 +106,9 @@ variableDeclarationList ::= variableDeclaration SEMICOLON
   | variableDeclarationList variableDeclaration SEMICOLON ;
 
 variableDeclaration ::= type:t objectId:id
-                        {: env.enterVar(t.toString(), id.toString()); :} /*giving a type to the symbol table */
+                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
                         | type:t objectId:id
-                        {: env.enterVar(t.toString(), id.toString()); :} /*giving a type to the symbol table */
+                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
                         arrayDeclaration ;
 
 arrayDeclaration ::= subscriptDeclarationList ASSIGN NEW INT dimensionList ;
@@ -136,10 +136,10 @@ type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: R
 
 argumentDeclarationListOption ::= argumentDeclarationList:arg {: RESULT = arg; :} | {:RESULT = ""; :};
 
-argumentDeclarationList ::= argumentDeclarationList:arg COMMA argumentDeclaration:arg {: RESULT = arg + ", " + arg; :}
+argumentDeclarationList ::= argumentDeclarationList:argl COMMA argumentDeclaration:arg {: RESULT = argl + ", " + arg; :}
   | argumentDeclaration:arg {: RESULT = arg; :} ;
 
-argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t.toString(), id.toString()); RESULT = t + " " + id; :};
+argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t, id); RESULT = t + " " + id; :};
 
 compoundStatement ::= LBRACE statementList RBRACE ;
 
