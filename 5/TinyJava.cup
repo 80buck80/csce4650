@@ -106,9 +106,9 @@ variableDeclarationList ::= variableDeclaration SEMICOLON
   | variableDeclarationList variableDeclaration SEMICOLON ;
 
 variableDeclaration ::= type:t objectId:id
-                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
+                        {: env.enterVar(t.toString(), id.toString()); :} /*giving a type to the symbol table */
                         | type:t objectId:id
-                        {: env.enterVar(t, id); :} /*giving a type to the symbol table */
+                        {: env.enterVar(t.toString(), id.toString()); :} /*giving a type to the symbol table */
                         arrayDeclaration ;
 
 arrayDeclaration ::= subscriptDeclarationList ASSIGN NEW INT dimensionList ;
