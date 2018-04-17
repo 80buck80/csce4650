@@ -139,7 +139,7 @@ argumentDeclarationListOption ::= argumentDeclarationList:arg {: RESULT = arg; :
 argumentDeclarationList ::= argumentDeclarationList:argl COMMA argumentDeclaration:arg {: RESULT = argl + ", " + arg; :}
   | argumentDeclaration:arg {: RESULT = arg; :} ;
 
-argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t, id); RESULT = t + " " + id; :};
+argumentDeclaration ::= type:t  objectId:id subscriptDeclarationList {: env.enterVar(t.toString(), id); RESULT = t + " " + id; :};
 
 compoundStatement ::= LBRACE statementList RBRACE ;
 
