@@ -2,13 +2,16 @@ import java_cup.runtime.*;
 
 action code {: SymbolTable currentEnv, env, other; :};
 
-terminal ID, INTEGER;
+terminal String ID;
+terminal String INTEGER;
+terminal String BOOLEAN;
+terminal String INT;
 terminal AND, OR, NOT;
 terminal LT, LE, GT, GE, EQ, NE;
 terminal PLUS, MINUS, TIMES, SLASH;
 terminal SEMICOLON, DOT, COMMA;
 terminal LPAREN, RPAREN, LBRACK, RBRACK, LBRACE, RBRACE, ASSIGN;
-terminal ARGS, BOOLEAN, CLASS, ELSE, FALSE, IF, IMPORT, IN, INT, JAVA, MAIN;
+terminal ARGS, CLASS, ELSE, FALSE, IF, IMPORT, IN, JAVA, MAIN;
 terminal NEXTINT, NEW, OUT, PRINTLN, PUBLIC, RETURN, SCANNER, STATIC, STRING;
 terminal SYSTEM, THIS, TRUE, UTIL, VOID, WHILE;
 
@@ -27,10 +30,10 @@ non terminal arrayDeclaration;
 non terminal subscriptDeclarationList;
 non terminal dimensionList;
 non terminal mainDeclaration;
-non terminal type;
-non terminal argumentDeclarationListOption;
-non terminal argumentDeclarationList;
-non terminal argumentDeclaration;
+non terminal String type;
+non terminal String argumentDeclarationListOption;
+non terminal String argumentDeclarationList;
+non terminal String argumentDeclaration;
 non terminal compoundStatement;
 non terminal statementList;
 non terminal statement;
@@ -54,9 +57,9 @@ non terminal object;
 non terminal variable;
 non terminal subscriptList;
 non terminal functionCall;
-non terminal classId;
-non terminal objectId;
-non terminal functionId;
+non terminal String classId;
+non terminal String objectId;
+non terminal String functionId;
 
 start with program;
 
@@ -72,7 +75,7 @@ classDefinition ::= CLASS classId:id
                     {: currentEnv = env; :} /* save current env in a temp variable for later */
                     {: env = new SymbolTable(); :} /* create new symbol table for a class */
                     memberList
-                    {: currentEnv.enterClass(args); :} /* give the class to the higher level environment */
+                    {: currentEnv.enterClass(id, env); :} /* give the class to the higher level environment */
                     {: env = currentEnv; :} /* restore higher level environment */
                     RBRACE ;
 
@@ -94,12 +97,12 @@ functionDeclaration ::=
     PUBLIC type:t functionId:id LPAREN
     {: other = env;  env = new SymbolTable(); :}
     argumentDeclarationListOption:arg RPAREN
-    {: other.enterFunction(t, id, args, env, ""); :} /* give the function to the class symbol table */
+    {: other.enterFunction(t, id, arg, env, ""); :} /* give the function to the class symbol table */
 
   | PUBLIC STATIC type:t functionId:id LPAREN
     {: other = env; env = new SymbolTable(); :} /* create new symbol table for function */
     argumentDeclarationListOption:arg RPAREN
-    {: other.enterFunction(t, id, args, env, ""); :} /* give the function to the class symbol table */
+    {: other.enterFunction(t, id, arg, env, ""); :} /* give the function to the class symbol table */
   | mainDeclaration ;
 
 variableDeclarationList ::= variableDeclaration SEMICOLON

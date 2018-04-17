@@ -5,26 +5,26 @@ import java.util.*;
 // SymbolTableEntry is a class to represent the symbol table entries
 // for PL/0 programs.
 
-enum Category {CLASS, FUNCTION, VARIABLE};
+// enum Category {CLASS, FUNCTION, VARIABLE};
 
 
 class SymbolTableEntry {
 
-  private Category category;
-  private String returnType;
-  private String args;
+  private int category;
+  private String returnType = null;
+  private String args = null;
   private SymbolTable environment;
-  private String code;
+  private String code = null;
 
 
   //CLASS CONSTRUCTOR
-  public SymbolTableEntry (Category cat, SymbolTable env) {
+  public SymbolTableEntry (int cat, SymbolTable env) {
     category = cat;
     environment = env;
   }
 
   //FUNCTION CONSTRUCTOR
-  public SymbolTableEntry (Category cat, String rt, String a, SymbolTable env, String c) {
+  public SymbolTableEntry (int cat, String rt, String a, SymbolTable env, String c) {
     category = cat;
     returnType = rt;
     args = a;
@@ -33,13 +33,13 @@ class SymbolTableEntry {
   }
 
   //VARIABLE CONSTRUCTOR
-  public SymbolTableEntry (Category cat, String rt) {
+  public SymbolTableEntry (int cat, String rt) {
     category = cat;
     returnType = rt;
   }
 
 
-  public Category category () { return category; }
+  public int category () { return category; }
 
   public SymbolTable getEnvironment () { return environment; }
 
@@ -56,9 +56,20 @@ class SymbolTableEntry {
   //   return printString;
   // }
   public String toString () {
-    String printString = category . name ();
-    if (category == Category . VARIABLE || category == Category . FUNCTION)
+    String printString = Category . toString (category);
+    if (category == Category . VARIABLE)
       printString = printString + " " + returnType;
+
+    else if(category == Category . FUNCTION)
+	{
+	  if(args != null)
+	  {
+		  printString = printString + " " + returnType;
+		  printString += args ;
+	  }
+	  else
+		  printString = printString + " " + returnType; 
+	}
     return printString;
   }
 
@@ -145,6 +156,9 @@ public class SymbolTable {
       System . out . println (idEntry);
       if (idEntry . category () == Category . FUNCTION)
         procedureList . put (id, idEntry);
+      if (idEntry . category () == Category . CLASS)
+        procedureList . put (id, idEntry);
+
     }
     Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
       procedureList . entrySet () . iterator ();
