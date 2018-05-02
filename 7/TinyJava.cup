@@ -175,7 +175,12 @@ relationalExpression ::=
     arithmeticExpression relationalOperator arithmeticExpression
   | arithmeticExpression ;
 
-relationalOperator ::= LT | LE | GT | GE | EQ | NE ;
+relationalOperator ::= LT {:RESULT = "<":} |
+                      LE {:RESULT = "<=":} |
+                      GT {:RESULT = ">=":} |
+                      GE {:RESULT = ">=":} |
+                      EQ {:RESULT = "=":}  |
+                      NE {:RESULT = "!=":};
 
 arithmeticExpression ::= term | arithmeticExpression addingOperator term ;
 

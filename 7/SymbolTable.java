@@ -7,6 +7,17 @@ import java.util.*;
 
 // enum Category {CLASS, FUNCTION, VARIABLE};
 
+class Temp{
+  static public int tempNum = 0;
+
+  static public String makeTemp(){
+    String temp = "_T" + tempNum;
+    tempNum++;
+    return temp;
+  }
+
+
+}
 
 class SymbolTableEntry {
 
@@ -68,7 +79,7 @@ class SymbolTableEntry {
 		  printString += args ;
 	  }
 	  else
-		  printString = printString + " " + returnType; 
+		  printString = printString + " " + returnType;
 	}
     return printString;
   }
