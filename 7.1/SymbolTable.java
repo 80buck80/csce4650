@@ -2,186 +2,80 @@
 
 import java.util.*;
 
-enum Category {CLASS, FUNCTION, VARIABLE}
-
-class Type { }
-
-// IntegerType represents the type of integer variables in TinyJava.
-
-class IntegerType extends Type {
-
-  public String toString () {
-    return "int";
-  }
-
-}
-
-// BooleanType represents the type of Boolean variables in TinyJava.
-
-class BooleanType extends Type {
-
-  public String toString () {
-    return "boolean";
-  }
-
-}
-
-// VoidType represents the type of void variables in TinyJava.
-
-class VoidType extends Type {
-
-  public String toString () {
-    return "void";
-  }
-
-}
-
-// ArrayType represents array types in TinyJava.
-
-class ArrayType extends Type {
-
-  private int dimension;
-  private Type baseType;
-
-  public ArrayType (int dim, Type base) {
-    dimension = dim;
-    baseType = base;
-  }
-
-  public int dimension () { return dimension; }
-
-  public String toString () {
-    return "array (" + dimension + ", " + baseType + ")";
-  }
-
-}
-
-// ObjectType represents object types in TinyJava.
-
-class ObjectType extends Type {
-
-  private String className;
-  private SymbolTableEntry objectType;
-
-  public ObjectType (String className, SymbolTableEntry objectType) {
-    this . className = className;
-    this . objectType = objectType;
-  }
-
-  public String className () { return className; }
-
-  public SymbolTableEntry objectType () { return objectType; }
-
-  public String toString () {
-    return className;
-  }
-
-}
-
-// Declarator is a class which defines an identifier and its type.
-
-class Declarator {
-
-  private String id;
-  private Type type;
-
-  public Declarator (String id, Type type) {
-    this . id = id;
-    this . type = type;
-  }
-
-  public String id () { return id; }
-
-  public Type type () { return type; }
-
-}
-
-// ArrayDeclarator is a class which defines arrays.
-
-class ArrayDeclarator extends Declarator {
-
-  private int subscriptNumber;
-
-  public ArrayDeclarator (String id, Type type, int subscriptNumber) {
-    super (id, type);
-    this . subscriptNumber = subscriptNumber;
-  }
-
-  public int subscriptNumber () { return subscriptNumber; }
-
-}
-
 // SymbolTableEntry is a class to represent the symbol table entries
-// for TinyJava programs.
+// for PL/0 programs.
+
+// enum Category {CLASS, FUNCTION, VARIABLE};
+
 
 class SymbolTableEntry {
 
-  private Category category;
-  private boolean staticFlag;
-  private Type type;
-  private LinkedList<Type> argTypes;
-  private SymbolTable localEnv;
-  private String funcCode;
+  private int category;
+  private String returnType = null;
+  private String args = null;
+  private SymbolTable environment;
+  private String code = null;
 
-  public SymbolTableEntry (Category category) { 
-    this . category = category;
+
+  //CLASS CONSTRUCTOR
+  public SymbolTableEntry (int cat, SymbolTable env) {
+    category = cat;
+    environment = env;
   }
 
-  public SymbolTableEntry (Category category, Type type) {
-    this . category = category;
-    this . type = type;
+  //FUNCTION CONSTRUCTOR
+  public SymbolTableEntry (int cat, String rt, String a, SymbolTable env, String c) {
+    category = cat;
+    returnType = rt;
+    args = a;
+    environment = env;
+    code = c;
   }
 
-  public SymbolTableEntry (Category category, Type type, boolean staticFlag) {
-    this . category = category;
-    this . type = type;
-    this . staticFlag = staticFlag;
+  //VARIABLE CONSTRUCTOR
+  public SymbolTableEntry (int cat, String rt) {
+    category = cat;
+    returnType = rt;
   }
 
-  public SymbolTableEntry (Category category, SymbolTable env) {
-    this . category = category;
-    this . localEnv = env;
-  }
 
-  public SymbolTableEntry (Category category, Type type, boolean staticFlag,
-      LinkedList<Type> argTypes, SymbolTable env) {
-    this . category = category;
-    this . type = type;
-    this . staticFlag = staticFlag;
-    this . argTypes = argTypes;
-    this . localEnv = env;
-  }
+  public int category () { return category; }
 
-  public Category category () { return category; }
+  public SymbolTable getEnvironment () { return environment; }
 
-  public boolean staticFlag () { return staticFlag; }
+  public String getCode () { return code; }
 
-  public Type type () { return type; }
+  public String getReturnType () { return returnType; }
 
-  public SymbolTable localEnv () { return localEnv; }
+  public String getArgs () { return args; }
 
-  public String funcCode () { return funcCode; }
-
-  public void setCode (String code) { funcCode = code; }
-
+  // public String toString () {
+  //   String printString = Category . toString (category);
+  //   // if (category == Category . CONSTANT)
+  //   //   printString = printString + "(" + constValue + ")";
+  //   return printString;
+  // }
   public String toString () {
-    String printString = category . name ();
-    if (category == Category . VARIABLE || category == Category . FUNCTION) {
-      if (staticFlag)
-        printString = printString + " yes   ";
-      else
-        printString = printString + " no    ";
-      if (category == Category . VARIABLE)
-        printString = printString + " " + type;
-      else
-        printString = printString + " " + argTypes + "->" + type;
-    }
+    String printString = Category . toString (category);
+    if (category == Category . VARIABLE)
+      printString = printString + " " + returnType;
+
+    else if(category == Category . FUNCTION)
+	{
+	  if(args != null)
+	  {
+		  printString = printString + " " + returnType;
+		  printString += args ;
+	  }
+	  else
+		  printString = printString + " " + returnType; 
+	}
     return printString;
   }
 
 }
- 
-// SymbolTable is a class to represent the symbol table for TinyJava programs.
+
+// SymbolTable is a class to represent the symbol table for PL/0 programs.
 
 public class SymbolTable {
 
@@ -189,101 +83,67 @@ public class SymbolTable {
 
   public static int maxLen () { return maxlen; }
 
-  private SymbolTable parent;				// static parent
-
   private TreeMap <String, SymbolTableEntry> table; 	// id table
 
-  public SymbolTable (SymbolTable staticParent) { 
-    parent = staticParent;
-    table = new TreeMap <String, SymbolTableEntry> (); 
-  }
-
-  public SymbolTable parent () { return parent; }
-
-  // The entry function returns the symbol table entry for the id, including
-  // if the id appears in a parent's symbol table. If the id has not been 
-  // declared, it prints an appropriate error message.
-
-  public SymbolTableEntry entry (String id) {
-    SymbolTableEntry idEntry = table . get (id);
-    if (idEntry == null)
-      if (parent == null)
-        ErrorMessage . print ("Undeclared identifier: " + id);
-      else				// not found in this scope
-        idEntry = parent . entry (id); 	// check parent
-    return idEntry;
-  }
+  public SymbolTable () { table = new TreeMap <String, SymbolTableEntry> (); }
 
   // The enter function enters an id and its information into the symbol
   // table.
 
   public void enter (String id, SymbolTableEntry entry) {
-    SymbolTableEntry idEntry = table . get (id);
-    if (idEntry != null)
-      ErrorMessage . print ("Identifier " + id + " already declared.");
     table . put (id, entry);
     if (id . length () > maxlen)
       maxlen = id . length ();
   }
 
-  // The enterVar function enters a variable id into the symbol table.
- 
-  public void enterVar (String id, Type type) { 
-    enter (id, new SymbolTableEntry (Category . VARIABLE, type));
-  }
-
-  public void enterVar (String id, Type type, boolean staticFlag) { 
-    enter (id, new SymbolTableEntry (Category . VARIABLE, type, staticFlag));
-  }
-
-  // The enterFunc function enters a function id, its return type and its local 
-  // symbol table into the symbol table. When this function is called, the local
-  // symbol table contains only the formal parameters. This entry is needed to
-  // allow type checking of recursive calls.
-
-  public void enterFunc (String id, Type type, boolean staticFlag,
-      LinkedList<Type> argTypes, SymbolTable env) {
-    enter (id, new SymbolTableEntry (Category . FUNCTION, type, staticFlag,
-      argTypes, env));
-  }
-
-  // The enterFuncCode function enters the code for function id into the
-  // symbol table. The entry for id has already been added by enterFunc.
-
-  public void enterFuncCode (String id, String code) {
-    SymbolTableEntry idEntry = table . get (id);
-    idEntry . setCode (code);
-  }
-
-  // The enterClass function enters a class id and its local symbol table 
-  // into the symbol table.
+  // The enterConst function enters a constant id and its value into the
+  // symbol table.
 
   public void enterClass (String id, SymbolTable env) {
     enter (id, new SymbolTableEntry (Category . CLASS, env));
   }
 
+  // The enterVar function enters a variable id into the symbol table.
+
+  public void enterFunction (String type, String id, String args, SymbolTable env, String c) {
+    enter (id, new SymbolTableEntry (Category . FUNCTION, type, args, env, c));
+  }
+
+  // The enterProc function enters a procedure id, its local symbol table and
+  // syntax tree into the symbol table.
+
+  public void enterVar (String rt, String id) {
+    enter (id, new SymbolTableEntry (Category . VARIABLE, rt));
+  }
+
+  // The entry function returns the symbol table entry for the id.
+
+  public SymbolTableEntry entry (String id) {
+    return table . get (id);
+  }
+
   // The print function prints the entire symbol table, including local
-  // symbol tables for classes and functions.
+  // symbol tables and syntax trees for procedures.
 
   public void print (String blockName) {
-    System . out . println ();
+    System . out . println ("");
     System . out . println ("Identifier Table for " + blockName);
     System . out . print ("---------------------");
-    for (int i = 0; i < blockName . length (); i++) 
+    for (int i = 0; i < blockName . length (); i++)
       System . out . print ("-");
-    System . out . println ();
-    System . out . println ();
+    System . out . println ("");
+    System . out . println ("");
     System . out . print ("Id");
     for (int i = 2; i < maxLen (); i++)
       System . out . print (" ");
-    System . out . println (" Category Static Type");
+    System . out . println (" Category");
     System . out . print ("--");
     for (int i = 2; i < maxLen (); i++)
       System . out . print (" ");
-    System . out . println (" -------- ------ ----");
-    Iterator <Map . Entry <String, SymbolTableEntry>> envIterator = 
+    System . out . println (" --------");
+    Iterator <Map . Entry <String, SymbolTableEntry>> envIterator =
       table . entrySet () . iterator ();
-    TreeMap <String, SymbolTableEntry> classAndFunctionList = 
+    TreeMap <String, SymbolTableEntry> procedureList =
       new TreeMap <String, SymbolTableEntry> ();
     while (envIterator . hasNext ()) {
       Map . Entry <String, SymbolTableEntry> entry = envIterator . next ();
@@ -294,18 +154,20 @@ public class SymbolTable {
         System . out . print (" ");
       System . out . print (" ");
       System . out . println (idEntry);
-      if (idEntry . category () == Category . CLASS 
-          || idEntry . category () == Category . FUNCTION)
-        classAndFunctionList . put (id, idEntry);
+      if (idEntry . category () == Category . FUNCTION)
+        procedureList . put (id, idEntry);
+      if (idEntry . category () == Category . CLASS)
+        procedureList . put (id, idEntry);
+
     }
-    Iterator <Map . Entry <String, SymbolTableEntry>> classAndFunctionIterator =
-      classAndFunctionList . entrySet () . iterator ();
-    while (classAndFunctionIterator . hasNext ()) {
-      Map . Entry <String, SymbolTableEntry> entry = 
-        classAndFunctionIterator . next ();
-      String classOrFunctionName = entry . getKey ();
+    Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
+      procedureList . entrySet () . iterator ();
+    while (procedureIterator . hasNext ()) {
+      Map . Entry <String, SymbolTableEntry> entry =
+        procedureIterator . next ();
+      String procedureName = entry . getKey ();
       SymbolTableEntry idEntry = entry . getValue ();
-      idEntry . localEnv () . print (classOrFunctionName);
+      idEntry . getEnvironment () . print (procedureName);
     }
   }
 
