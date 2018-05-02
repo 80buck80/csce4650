@@ -26,7 +26,7 @@ public class TinyJavaParsST {
     }
   }
 
-  public void print(file)
+  public void print(String file)
   {
 
     switch(file)
@@ -72,9 +72,9 @@ public class TinyJavaParsST {
                                   "  i = _T6;"+
                                   "  goto _L4;"+
                                   "_L6:"+
-                                  "  printf ("%d", h); "+
+                                  "  printf (%d, h); "+
                                   "  _T7 = my_list_tl [0];"+
-                                  "  printf ("%d", _T7);"+
+                                  "  printf (%d, _T7);"+
                                   "  return 0;"+
                                   "}");
     }
