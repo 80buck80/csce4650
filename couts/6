@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main ()
+{
+  int q; 
+  int r; 
+  int x; 
+  int y;
+  int _T1;
+  int _T2;
+  scanf ("%d", &x);
+  scanf ("%d", &y);
+  q = 0;
+  r = x;
+_L1:
+  if (r >= y) goto _L2;
+  goto _L3;
+_L2:
+  _T1 = q + 1;
+  q = _T1;
+  _T2 = r - y;
+  r = _T2;
+  goto _L1;
+_L3:
+  printf ("%d", q);
+  printf ("%d", r);
+  return 0;
+}

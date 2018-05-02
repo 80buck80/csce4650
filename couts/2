@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int h;
+
+int area (int* _formal) {
+  int x;
+  int y;
+  int z;
+  int _T1;
+  int _T2;
+  int _T3;
+  int _T4;
+  int _T5;
+  int _T6;
+  x = _formal [0];
+  y = _formal [1];
+  _T1 = x * y;
+  _T2 = x * h;
+  _T3 = _T1 + _T2;
+  _T4 = y * h;
+  _T5 = _T3 + _T4;
+  _T6 = 2 * _T5;
+  z = _T6;
+  return z;
+}
+
+int main () {
+  int a; 
+  int b; 
+  int s;
+  int _T1;
+  int _actual [2];
+  scanf ("%d", &a);
+  scanf ("%d", &b);
+  scanf ("%d", &h);
+  _actual [0] = a;
+  _actual [1] = b;
+  _T1 = area (_actual);
+  s = _T1;
+  printf ("%d", s);
+  return 0;
+}

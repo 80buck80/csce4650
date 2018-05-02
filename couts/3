@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int facto (int* _formal) {
+  int x;
+  int s;
+  int _T1;
+  int _T2;
+  int _T3;
+  int _actual [1];
+  x = _formal [0];
+  if (x == 1) goto _L1;
+  goto _L2;
+_L1:
+  s = 1;
+  goto _L3;
+_L2:
+  _T1 = x - 1;
+  _actual [0] = _T1;
+  _T2 = facto (_actual);
+  _T3 = x * _T2;
+  s = _T3;
+_L3:
+  return s;
+}
+
+int main () {
+  int i; 
+  int fac;
+  int _T1;
+  int _actual [1];
+  scanf ("%d", &i);
+  _actual [0] = i;
+  _T1 = facto (_actual);
+  fac = _T1;
+  printf ("%d", fac);
+  return 0;
+}

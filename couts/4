@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int f (int* _formal) {
+  int* a;
+  int i;
+  int x;
+  int _T1;
+  a = (int *) _formal [0];
+  i = _formal [1];
+  _T1 = a [i];
+  x = _T1;
+  a [i] = 0;
+  i = 622;
+  return x;
+}
+
+int main ()
+{
+  int b [100];
+  int i;
+  int n;
+  int _T1;
+  int _T2;
+  int _T3;
+  int _T4;
+  int _actual [2];
+  n = 40;
+  i = 0;
+_L1:
+  if (i < 100) goto _L2;
+  goto _L3;
+_L2:
+  _T1 = i * i;
+  b [i] = _T1;
+  _T2 = i + 1;
+  i = _T2;
+  goto _L1;
+_L3:
+  printf ("%d", n);
+  _actual [0] = (int) b;
+  _actual [1] = n;
+  _T3 = f (_actual);
+  printf ("%d", _T3);
+  printf ("%d", n);
+  _T4 = b [n];
+  printf ("%d", _T4);
+  return 0;
+}

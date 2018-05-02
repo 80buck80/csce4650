@@ -1,0 +1,539 @@
+"#include <stdio.h>"+ 
+""+ 
+"int main () {"+ 
+"  int my_list [100]; "+ 
+"  int my_list_tl [100];"+ 
+"  int r; "+ 
+"  int h; "+ 
+"  int i;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int _T4;"+ 
+"  int _T5;"+ 
+"  int _T6;"+ 
+"  int _T7;"+ 
+"  r = 2;"+ 
+"_L1:"+ 
+"  if (r < 5) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T1 = r - 2;"+ 
+"  my_list [_T1] = r;"+ 
+"  _T2 = r + 1;"+ 
+"  r = _T2;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  _T3 = my_list [0];"+ 
+"  h = _T3;"+ 
+"  i = r;"+ 
+"_L4:"+ 
+"  if (i > 0) goto _L5;"+ 
+"  goto _L6;"+ 
+"_L5:"+ 
+"  _T4 = i - 1;"+ 
+"  _T5 = my_list [i];"+ 
+"  my_list_tl [_T4] = _T5;"+ 
+"  _T6 = i - 1;"+ 
+"  i = _T6;"+ 
+"  goto _L4;"+ 
+"_L6:"+ 
+"  printf ("%d", h); "+ 
+"  _T7 = my_list_tl [0];"+ 
+"  printf ("%d", _T7);"+ 
+"  return 0;"+ 
+"}"+ 
+"#include <stdio.h>"+ 
+""+ 
+"int h;"+ 
+""+ 
+"int area (int* _formal) {"+ 
+"  int x;"+ 
+"  int y;"+ 
+"  int z;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int _T4;"+ 
+"  int _T5;"+ 
+"  int _T6;"+ 
+"  x = _formal [0];"+ 
+"  y = _formal [1];"+ 
+"  _T1 = x * y;"+ 
+"  _T2 = x * h;"+ 
+"  _T3 = _T1 + _T2;"+ 
+"  _T4 = y * h;"+ 
+"  _T5 = _T3 + _T4;"+ 
+"  _T6 = 2 * _T5;"+ 
+"  z = _T6;"+ 
+"  return z;"+ 
+"}"+ 
+""+ 
+"int main () {"+ 
+"  int a; "+ 
+"  int b; "+ 
+"  int s;"+ 
+"  int _T1;"+ 
+"  int _actual [2];"+ 
+"  scanf ("%d", &a);"+ 
+"  scanf ("%d", &b);"+ 
+"  scanf ("%d", &h);"+ 
+"  _actual [0] = a;"+ 
+"  _actual [1] = b;"+ 
+"  _T1 = area (_actual);"+ 
+"  s = _T1;"+ 
+"  printf ("%d", s);"+ 
+"  return 0;"+ 
+"}"+ 
+"#include <stdio.h>"+ 
+""+ 
+"int facto (int* _formal) {"+ 
+"  int x;"+ 
+"  int s;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int _actual [1];"+ 
+"  x = _formal [0];"+ 
+"  if (x == 1) goto _L1;"+ 
+"  goto _L2;"+ 
+"_L1:"+ 
+"  s = 1;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T1 = x - 1;"+ 
+"  _actual [0] = _T1;"+ 
+"  _T2 = facto (_actual);"+ 
+"  _T3 = x * _T2;"+ 
+"  s = _T3;"+ 
+"_L3:"+ 
+"  return s;"+ 
+"}"+ 
+""+ 
+"int main () {"+ 
+"  int i; "+ 
+"  int fac;"+ 
+"  int _T1;"+ 
+"  int _actual [1];"+ 
+"  scanf ("%d", &i);"+ 
+"  _actual [0] = i;"+ 
+"  _T1 = facto (_actual);"+ 
+"  fac = _T1;"+ 
+"  printf ("%d", fac);"+ 
+"  return 0;"+ 
+"}"+ 
+"#include <stdio.h>"+ 
+""+ 
+"int f (int* _formal) {"+ 
+"  int* a;"+ 
+"  int i;"+ 
+"  int x;"+ 
+"  int _T1;"+ 
+"  a = (int *) _formal [0];"+ 
+"  i = _formal [1];"+ 
+"  _T1 = a [i];"+ 
+"  x = _T1;"+ 
+"  a [i] = 0;"+ 
+"  i = 622;"+ 
+"  return x;"+ 
+"}"+ 
+""+ 
+"int main ()"+ 
+"{"+ 
+"  int b [100];"+ 
+"  int i;"+ 
+"  int n;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int _T4;"+ 
+"  int _actual [2];"+ 
+"  n = 40;"+ 
+"  i = 0;"+ 
+"_L1:"+ 
+"  if (i < 100) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T1 = i * i;"+ 
+"  b [i] = _T1;"+ 
+"  _T2 = i + 1;"+ 
+"  i = _T2;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  printf ("%d", n);"+ 
+"  _actual [0] = (int) b;"+ 
+"  _actual [1] = n;"+ 
+"  _T3 = f (_actual);"+ 
+"  printf ("%d", _T3);"+ 
+"  printf ("%d", n);"+ 
+"  _T4 = b [n];"+ 
+"  printf ("%d", _T4);"+ 
+"  return 0;"+ 
+"}"+ 
+"#include <stdio.h>"+ 
+""+ 
+"typedef struct {"+ 
+"  int length;"+ 
+"  int max;"+ 
+"  int list [100];"+ 
+"} List;"+ 
+""+ 
+"int _List_initialize (int* _formal) {"+ 
+"  List* _this;"+ 
+"  int n;"+ 
+"  int flag;"+ 
+"  int i;"+ 
+"  int _T1;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  n = _formal [1];"+ 
+"  _this -> length = 0;"+ 
+"  _this -> max = 100;"+ 
+"  if (n <= 0) goto _L2;"+ 
+"  goto _L1;"+ 
+"_L1:"+ 
+"  _T1 = _this -> max;"+ 
+"  if (n > _T1) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  flag = 0;"+ 
+"  goto _L4;"+ 
+"_L3:"+ 
+"  flag = n;"+ 
+"_L4:"+ 
+"  return flag;"+ 
+"}"+ 
+""+ 
+"int _List_getLength (int* _formal) { "+ 
+"  List* _this;"+ 
+"  int _T1;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  _T1 = _this -> length; "+ 
+"  return _T1;"+ 
+"}"+ 
+""+ 
+"int _List_nil (int* _formal) { "+ 
+"  List* _this;"+ 
+"  int nul;"+ 
+"  int _T1;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  _T1 = _this -> length;"+ 
+"  if (_T1 > 0) goto _L1;"+ 
+"  goto _L2;"+ 
+"_L1:"+ 
+"  nul = 0; "+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  nul = 1;"+ 
+"_L3:"+ 
+"  return nul;"+ 
+"}"+ 
+""+ 
+"List _List_cons (int* _formal) {"+ 
+"  List* _this;"+ 
+"  int a;"+ 
+"  int i;"+ 
+"  List cons_list;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int _T4;"+ 
+"  int* _T5;"+ 
+"  int _T6;"+ 
+"  int* _T7;"+ 
+"  int _T8;"+ 
+"  int* _T9;"+ 
+"  int _T10;"+ 
+"  int _T11;"+ 
+"  int _actual [2];"+ 
+"  _this = (List *) _formal [0];"+ 
+"  a = _formal [1];"+ 
+"  _actual [0] = (int) &cons_list;"+ 
+"  _T1 = _this -> length;"+ 
+"  _T2 = _T1 + 1;"+ 
+"  _actual [1] = _T2;"+ 
+"  _T3 = _List_initialize (_actual);"+ 
+"  cons_list . length = _T3;"+ 
+"  _T4 = cons_list . length;"+ 
+"  if (_T4 > 0) goto _L1;"+ 
+"  goto _L2;"+ 
+"_L1:"+ 
+"  _T5 = cons_list . list;"+ 
+"  _T5 [0] = a;"+ 
+"  i = 0;"+ 
+"_L3:"+ 
+"  _T6 = _this -> length;"+ 
+"  if (i < _T6) goto _L4;"+ 
+"  goto _L5;"+ 
+"_L4:"+ 
+"  _T7 = cons_list . list;"+ 
+"  _T8 = i + 1;"+ 
+"  _T9 = _this -> list;"+ 
+"  _T10 = _T9 [i];"+ 
+"  _T7 [_T8] = _T10;"+ 
+"  _T11 = i + 1;"+ 
+"  i = _T11;"+ 
+"  goto _L3;"+ 
+"_L5:"+ 
+"_L2:"+ 
+"  return cons_list;"+ 
+"}"+ 
+""+ 
+"int _List_head (int* _formal) {"+ 
+"  List* _this;"+ 
+"  int head;"+ 
+"  int _T1;"+ 
+"  int* _T2;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  _T1 = _this -> length;"+ 
+"  if (_T1 == 0) goto _L1;"+ 
+"  goto _L2;"+ 
+"_L1:"+ 
+"  head = 0;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T2 = _this -> list;"+ 
+"  head = _T2 [0];"+ 
+"_L3:"+ 
+"  return head;"+ 
+"}"+ 
+""+ 
+"List _List_tail (int* _formal) {"+ 
+"  List* _this;"+ 
+"  int i;"+ 
+"  List tail_list;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int* _T4;"+ 
+"  int _T5;"+ 
+"  List _T6;"+ 
+"  int _T7;"+ 
+"  int _actual [2];"+ 
+"  _this = (List *) _formal [0];"+ 
+"  _actual [0] = (int) &tail_list;"+ 
+"  _T1 = _this -> length;"+ 
+"  _T2 = _T1 - 1;"+ 
+"  _actual [1] = _T2;"+ 
+"  _T3 = _List_initialize (_actual);"+ 
+"  i = _T3;"+ 
+"_L1:"+ 
+"  if (i > 0) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _actual [0] = (int) &tail_list;"+ 
+"  _T4 = _this -> list;"+ 
+"  _T5 = _T4 [i];"+ 
+"  _actual [1] = _T5;"+ 
+"  _T6 = _List_cons (_actual);"+ 
+"  tail_list = _T6;"+ 
+"  _T7 = i - 1;"+ 
+"  i = _T7;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  return tail_list;"+ 
+"}"+ 
+""+ 
+"int _List_equals (int* _formal) {"+ 
+"  List* _this;"+ 
+"  List list2;"+ 
+"  int equals;"+ 
+"  int i;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  int _T3;"+ 
+"  int* _T4;"+ 
+"  int _T5;"+ 
+"  int* _T6;"+ 
+"  int _T7;"+ 
+"  int _T8;"+ 
+"  int _T9;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  list2 = * ((List *) _formal [1]);"+ 
+"  _T1 = _this -> length;"+ 
+"  _T2 = list2 . length;"+ 
+"  if (_T1 != _T2) goto _L1;"+ 
+"  goto _L2;"+ 
+"_L1:"+ 
+"  equals = 0;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  equals = 1;"+ 
+"  i = 0;"+ 
+"_L4:"+ 
+"  _T3 = _this -> length;"+ 
+"  if (i < _T3) goto _L5;"+ 
+"  goto _L6;"+ 
+"_L5:"+ 
+"  _T4 = _this -> list;"+ 
+"  _T5 = _T4 [i];"+ 
+"  _T6 = list2 . list;"+ 
+"  _T7 = _T6 [i];"+ 
+"  if (_T5 == _T7) goto _L7;"+ 
+"  goto _L6;"+ 
+"_L7:"+ 
+"  _T8 = i + 1;"+ 
+"  i = _T8;"+ 
+"  goto _L4;"+ 
+"_L6:"+ 
+"  _T9 = _this -> length;"+ 
+"  if (i < _T9) goto _L8;"+ 
+"  goto _L9;"+ 
+"_L8:"+ 
+"   equals = 0;"+ 
+"_L9:"+ 
+"_L3:"+ 
+"  return equals;"+ 
+"}"+ 
+""+ 
+"int _List_print (int* _formal) {"+ 
+"  List* _this;"+ 
+"  int i;"+ 
+"  int _T1;"+ 
+"  int* _T2;"+ 
+"  int _T3;"+ 
+"  int _T4;"+ 
+"  int _T5;"+ 
+"  _this = (List *) _formal [0];"+ 
+"  printf ("%d", 88888);"+ 
+"  i = 0;"+ 
+"_L1:"+ 
+"  _T1 = _this -> length;"+ 
+"  if (i < _T1) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T2 = _this -> list;"+ 
+"  _T3 = _T2 [i];"+ 
+"  printf ("%d", _T3);"+ 
+"  _T4 = i + 1;"+ 
+"  i = _T4;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  printf ("%d", 88888);"+ 
+"  _T5 = _this -> length;"+ 
+"  return _T5;"+ 
+"}"+ 
+""+ 
+"int main () {"+ 
+"  int i; "+ 
+"  List l1; "+ 
+"  List l2;"+ 
+"  List my_list;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  List _T3;"+ 
+"  int _T4;"+ 
+"  int _T5;"+ 
+"  int _T6;"+ 
+"  int _T7;"+ 
+"  int _T8;"+ 
+"  List _T9;"+ 
+"  int _T10;"+ 
+"  List _T11;"+ 
+"  List _T12;"+ 
+"  int _T13;"+ 
+"  int _T14;"+ 
+"  int _actual [2];"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T1 = _List_nil (_actual);"+ 
+"  printf ("%d", _T1);"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _actual [1] = 20;"+ 
+"  _T2 = _List_initialize (_actual);"+ 
+"  i = _T2;"+ 
+"  i = 10;"+ 
+"_L1:"+ 
+"  if (i > 0) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _actual [1] = i;"+ 
+"  _T3 = _List_cons (_actual);"+ 
+"  my_list = _T3;"+ 
+"  _T4 = i - 1;"+ 
+"  i = _T4;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T5 = _List_print (_actual);"+ 
+"  i = _T5;"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T6 = _List_nil (_actual);"+ 
+"  if (_T6 == 1) goto _L4;"+ 
+"  goto _L5;"+ 
+"_L4:"+ 
+"  printf ("%d", 1);"+ 
+"  goto _L6;"+ 
+"_L5:"+ 
+"  printf ("%d", 0);"+ 
+"_L6:"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T7 = _List_getLength (_actual);"+ 
+"  printf ("%d", _T7);"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T8 = _List_head (_actual);"+ 
+"  printf ("%d", _T8);"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _T9 = _List_tail (_actual);"+ 
+"  _actual [0] = (int) &_T9;"+ 
+"  _T10 = _List_print (_actual);"+ 
+"  i = _T10;"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _actual [1] = 0;"+ 
+"  _T11 = _List_cons (_actual);"+ 
+"  l1 = _T11;"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _actual [1] = 0;"+ 
+"  _T12 = _List_cons (_actual);"+ 
+"  l2 = _T12;"+ 
+"  _actual [0] = (int) &l1;"+ 
+"  _actual [1] = (int) &l2;"+ 
+"  _T13 = _List_equals (_actual);"+ 
+"  if (_T13 == 1) goto _L7;"+ 
+"  goto _L8;"+ 
+"_L7:"+ 
+"  printf ("%d", 1);"+ 
+"  goto _L9;"+ 
+"_L8:"+ 
+"  printf ("%d", 0);"+ 
+"_L9:"+ 
+"  _actual [0] = (int) &my_list;"+ 
+"  _actual [1] = (int) &l1;"+ 
+"  _T14 = _List_equals (_actual);"+ 
+"  if (_T14 == 1) goto _L10;"+ 
+"  goto _L11;"+ 
+"_L10:"+ 
+"  printf ("%d", 1);"+ 
+"  goto _L12;"+ 
+"_L11:"+ 
+"  printf ("%d", 0);"+ 
+"_L12:"+ 
+"  return 0;"+ 
+"}"+ 
+"#include <stdio.h>"+ 
+""+ 
+"int main ()"+ 
+"{"+ 
+"  int q; "+ 
+"  int r; "+ 
+"  int x; "+ 
+"  int y;"+ 
+"  int _T1;"+ 
+"  int _T2;"+ 
+"  scanf ("%d", &x);"+ 
+"  scanf ("%d", &y);"+ 
+"  q = 0;"+ 
+"  r = x;"+ 
+"_L1:"+ 
+"  if (r >= y) goto _L2;"+ 
+"  goto _L3;"+ 
+"_L2:"+ 
+"  _T1 = q + 1;"+ 
+"  q = _T1;"+ 
+"  _T2 = r - y;"+ 
+"  r = _T2;"+ 
+"  goto _L1;"+ 
+"_L3:"+ 
+"  printf ("%d", q);"+ 
+"  printf ("%d", r);"+ 
+"  return 0;"+ 
+"}"+ 
