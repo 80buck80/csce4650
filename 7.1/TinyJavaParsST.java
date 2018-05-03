@@ -18,7 +18,7 @@ public class TinyJavaParsST {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
       SymbolTabel evn = new SymbolTabel(System . in);
       TinyJavaParserST parser =
-      //new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
+      new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
       //SymbolTable env = (SymbolTable) parserValue . value;
       //env . print ("main");
@@ -41,9 +41,9 @@ class SymbolTabel
   public SymbolTabel(InputStream input)
   {
     this.in = input;
-    scanner = new Scanner(input);
-    file = scanner.nextLine();
-    System.out.println("File name: " + file);
+    // scanner = new Scanner(input);
+    // file = scanner.nextLine();
+    // System.out.println("File name: " + file);
   }
 
   public void print(String s)
