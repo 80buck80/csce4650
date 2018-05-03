@@ -4,6 +4,7 @@
 // the source program declarations.
 
 import java_cup . runtime . *;
+import java.util.Scanner;
 
 public class TinyJavaParsST {
 
@@ -14,7 +15,9 @@ public class TinyJavaParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      System.out.println(to_string(System.in));
+      Scanner scanner = new Scanner( System.in );
+      String input = scanner.nextLine();
+      System.out.println(input);
       TinyJavaParserST parser =
       new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
