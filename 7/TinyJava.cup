@@ -91,7 +91,8 @@ functionDefinition ::= functionDeclaration LBRACE
     variableDeclarationList statementList returnStatementOption RBRACE {: env = other; :}
   | functionDeclaration LBRACE statementList returnStatementOption RBRACE {: env = other; :}
   | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE {: env = other; :}
-  | functionDeclaration LBRACE returnStatementOption RBRACE ;
+  | functionDeclaration LBRACE returnStatementOption RBRACE {: other.enterFunction(t, id, arg, env, ""):};
+
 
 functionDeclaration ::=
     PUBLIC type:t functionId:id LPAREN
@@ -132,7 +133,7 @@ mainDeclaration ::=
     {: other = env; /* temp stores previous environment */
        env = new SymbolTable();
        env.enterVar("String", "args");
-       other.enterFunction("void", "main", "String args[]", env, "");
+       other.enterFunction("void", "main", "String args[]", env, );
     :};
 
 type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: RESULT = "boolean"; :} ;
@@ -149,10 +150,10 @@ compoundStatement ::= LBRACE statementList RBRACE ;
 statementList ::= statementList statement | statement ;
 
 statement ::= compoundStatement
-  | assignmentStatement SEMICOLON
-  | IF LPAREN expression RPAREN statement elseOption
-  | WHILE LPAREN expression RPAREN statement
-  | SYSTEM DOT OUT DOT PRINTLN LPAREN expression RPAREN SEMICOLON ;
+  | assignmentStatement:as SEMICOLON {:RESULT = as + ";\n":}
+  | IF LPAREN expression:e RPAREN statement:s elseOption:eo {:RESULT = "if (" + e + ")" + s + eo:}
+  | WHILE LPAREN expression:e RPAREN statement:s {:RESULT = "while (" + e + ")" + s :}
+  | SYSTEM DOT OUT DOT PRINTLN LPAREN expression:e RPAREN SEMICOLON {:RESULT = "printf(\"" + e + "\n\"" :};
 
 assignmentStatement ::= variable ASSIGN expression
   | variable ASSIGN NEW classId LPAREN RPAREN

@@ -50,6 +50,8 @@ class SymbolTableEntry {
   }
 
 
+
+
   public int category () { return category; }
 
   public SymbolTable getEnvironment () { return environment; }
@@ -59,6 +61,8 @@ class SymbolTableEntry {
   public String getReturnType () { return returnType; }
 
   public String getArgs () { return args; }
+
+  public void setCode (String newCode) {code = code + newCode};
 
   // public String toString () {
   //   String printString = Category . toString (category);
@@ -131,6 +135,11 @@ public class SymbolTable {
 
   public SymbolTableEntry entry (String id) {
     return table . get (id);
+  }
+
+  public void setFuncCode(String id, String code) {
+    SymbolTableEntry idEntry = table.get(id);
+    idEntry.setCode(code);
   }
 
   // The print function prints the entire symbol table, including local
