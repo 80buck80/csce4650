@@ -26,7 +26,7 @@ public class TinyJavaParsST {
     }
   }
 
-  public void printProgram(String file)
+  public static void printProgram(String file)
   {
 
     switch(file)
