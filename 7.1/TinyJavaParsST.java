@@ -36,14 +36,14 @@ public class TinyJavaParsST {
 }
 class SymbolTabel
 {
-  InputStream in;
+  InputStream is;
+  BufferedInputStream in;
   String file;
   Scanner scanner;
   public SymbolTabel(InputStream input)
   {
-    this.in = input;
-    file = in.toString();
-    System.out.println(file);
+    this.is = input;
+    this.in = new BufferedInputStream(input);
     // scanner = new Scanner(in);
     // file = scanner.nextLine();
     //
