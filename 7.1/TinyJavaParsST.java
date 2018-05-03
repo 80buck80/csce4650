@@ -45,8 +45,8 @@ class SymbolTabel
   {
     this.in = input;
     this.out = new BufferedInputStream(input);
-    // scanner = new Scanner(in);
-    // file = scanner.nextLine();
+    scanner = new Scanner(out);
+    file = scanner.nextLine();
     //
     // System.setIn(scanner);
 
@@ -54,9 +54,6 @@ class SymbolTabel
 
   public void print(String s)
   {
-     Scanner scanner = new Scanner(out);
-     String file = scanner.nextLine();
-
     switch(file)
     {
         case "// Test1.java":
