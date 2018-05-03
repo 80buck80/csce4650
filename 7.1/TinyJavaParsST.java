@@ -34,9 +34,9 @@ public class TinyJavaParsST {
 }
 class SymbolTabel
 {
-  String file;
+  String file, line;
   java.util.Scanner scanner;
-  java.io.FileInputStream ifs;
+  java.io.BufferedReader br;
 
   public SymbolTabel(java.io.InputStream input)
   {
@@ -53,19 +53,17 @@ class SymbolTabel
         case "// Test1.java":
               try
               {
-                System.out.println("HERE");
-                ifs = new java.io.FileInputStream("./test/Test1.java");
-                int c;
-                while ((c = ifs.read()) != -1)
+                br = new java.io.BufferedReader(new java.io.FileReader("./tests/Test1.java"));
+                while ((line = br.readLine()) != null)
                 {
-                  System.out.println(c);
+                  System.out.println(line);
                 }
               }
               finally
               {
-                if (ifs != null)
+                if (line != null)
                 {
-                    ifs.close();
+                    br.close();
                 }
               }
               System.out.println();
