@@ -47,6 +47,9 @@ class SymbolTabel
   {
     System.out.println(in);
     Scanner scanner = new Scanner(in);
+
+    System.out.println(scanner);
+
     String file = scanner.nextLine();
     System.out.println("File name: " + file);
     switch(file)
