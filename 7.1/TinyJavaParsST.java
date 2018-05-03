@@ -4,8 +4,6 @@
 // the source program declarations.
 
 import java_cup . runtime . *;
-// import java.util.Scanner;
-// import java.io.InputStream;
 
 
 public class TinyJavaParsST {
@@ -19,7 +17,7 @@ public class TinyJavaParsST {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
       SymbolTabel evn = new SymbolTabel(System . in);
       TinyJavaParserST parser =
-      new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
+      new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
       //java_cup .runtime . Symbol parserValue = parser . parse ();
       //SymbolTable env = (SymbolTable) parserValue . value;
       //env . print ("main");
@@ -37,9 +35,11 @@ public class TinyJavaParsST {
 class SymbolTabel
 {
   String file;
+  java.io.InputStream in;
 
   public SymbolTabel(java.io.InputStream input)
   {
+    in = new java.io.InputStream(input);
     java.util.Scanner scanner = new java.util.Scanner(input);
     file = scanner.nextLine();
 
