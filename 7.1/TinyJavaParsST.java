@@ -24,7 +24,7 @@ public class TinyJavaParsST {
       java_cup .runtime . Symbol parserValue = parser . parse ();
       //SymbolTable env = (SymbolTable) parserValue . value;
       //env . print ("main");
-      //evn . print ("main");
+      evn . print ("main");
     }
     catch (Exception e) {
       System . out . println ("Error in invoking parser/lexer");
@@ -54,8 +54,8 @@ class SymbolTabel
 
   public void print(String s)
   {
-  //   Scanner scanner = new Scanner(in);
-  //   String file = scanner.nextLine();
+     Scanner scanner = new Scanner(out);
+     String file = scanner.nextLine();
 
     switch(file)
     {
