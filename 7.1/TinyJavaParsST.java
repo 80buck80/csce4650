@@ -59,7 +59,14 @@ class SymbolTabel
                 {
                   System.out.println(c);
                 }
-              }  
+              }
+              finaly
+              {
+                if (ifs != null) 
+                {
+                    ifs.close();
+                }
+              }
               System.out.println();
               System.out.println();
               System.out.println("#include <stdio.h>\n"+
