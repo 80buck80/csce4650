@@ -37,14 +37,14 @@ class SymbolTabel
   String file;
   java.util.Scanner scanner;
   java.util.Scanner scanner2;
-  java.io.StringReader s;
+
 
   public SymbolTabel(java.io.InputStream input)
   {
-    s = input;
-    //scanner = new java.util.Scanner(input);
-    //scanner2 = new java.util.Scanner(scanner);
-    //file = scanner.nextLine();
+
+    scanner = new java.util.Scanner(input);
+    scanner2 = scanner.clone();
+    file = scanner.nextLine();
 
   }
 
