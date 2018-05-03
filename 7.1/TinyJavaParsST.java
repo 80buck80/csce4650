@@ -4,9 +4,8 @@
 // the source program declarations.
 
 import java_cup . runtime . *;
-import java.util.Scanner;
-import java.io.InputStream;
-import java.io.BufferedInputStream;
+
+
 
 public class TinyJavaParsST {
 
@@ -34,6 +33,12 @@ public class TinyJavaParsST {
 
 
 }
+
+
+import java.util.Scanner;
+import java.io.InputStream;
+
+
 class SymbolTabel
 {
   InputStream in;
