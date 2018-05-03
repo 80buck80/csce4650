@@ -127,49 +127,49 @@ public class SymbolTable {
 
   public void print (String blockName) {
     System . out . println ("");
-    System . out . println ("Identifier Table for " + blockName);
-    System . out . print ("---------------------");
-    for (int i = 0; i < blockName . length (); i++)
-      System . out . print ("-");
-    System . out . println ("");
-    System . out . println ("");
-    System . out . print ("Id");
-    for (int i = 2; i < maxLen (); i++)
-      System . out . print (" ");
-    System . out . println (" Category");
-    System . out . print ("--");
-    for (int i = 2; i < maxLen (); i++)
-      System . out . print (" ");
-    System . out . println (" --------");
-    Iterator <Map . Entry <String, SymbolTableEntry>> envIterator =
-      table . entrySet () . iterator ();
-    TreeMap <String, SymbolTableEntry> procedureList =
-      new TreeMap <String, SymbolTableEntry> ();
-    while (envIterator . hasNext ()) {
-      Map . Entry <String, SymbolTableEntry> entry = envIterator . next ();
-      String id = entry . getKey ();
-      SymbolTableEntry idEntry = entry . getValue ();
-      System . out . print (id);
-      for (int i = id . length (); i < maxLen (); i++)
-        System . out . print (" ");
-      System . out . print (" ");
-      System . out . println (idEntry);
-      if (idEntry . category () == Category . FUNCTION)
-        procedureList . put (id, idEntry);
-      if (idEntry . category () == Category . CLASS)
-        procedureList . put (id, idEntry);
-
-    }
-    Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
-      procedureList . entrySet () . iterator ();
-    while (procedureIterator . hasNext ()) {
-      Map . Entry <String, SymbolTableEntry> entry =
-        procedureIterator . next ();
-      String procedureName = entry . getKey ();
-      SymbolTableEntry idEntry = entry . getValue ();
-      idEntry . getEnvironment () . print (procedureName);
-    }
+    // System . out . println ("Identifier Table for " + blockName);
+    // System . out . print ("---------------------");
+    // for (int i = 0; i < blockName . length (); i++)
+    //   System . out . print ("-");
+    // System . out . println ("");
+    // System . out . println ("");
+    // System . out . print ("Id");
+    // for (int i = 2; i < maxLen (); i++)
+    //   System . out . print (" ");
+    // System . out . println (" Category");
+    // System . out . print ("--");
+    // for (int i = 2; i < maxLen (); i++)
+    //   System . out . print (" ");
+    // System . out . println (" --------");
+    // Iterator <Map . Entry <String, SymbolTableEntry>> envIterator =
+    //   table . entrySet () . iterator ();
+    // TreeMap <String, SymbolTableEntry> procedureList =
+    //   new TreeMap <String, SymbolTableEntry> ();
+    // while (envIterator . hasNext ()) {
+    //   Map . Entry <String, SymbolTableEntry> entry = envIterator . next ();
+    //   String id = entry . getKey ();
+    //   SymbolTableEntry idEntry = entry . getValue ();
+    //   System . out . print (id);
+    //   for (int i = id . length (); i < maxLen (); i++)
+    //     System . out . print (" ");
+    //   System . out . print (" ");
+    //   System . out . println (idEntry);
+    //   if (idEntry . category () == Category . FUNCTION)
+    //     procedureList . put (id, idEntry);
+    //   if (idEntry . category () == Category . CLASS)
+    //     procedureList . put (id, idEntry);
+    //
+    // }
+    // Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
+    //   procedureList . entrySet () . iterator ();
+    // while (procedureIterator . hasNext ()) {
+    //   Map . Entry <String, SymbolTableEntry> entry =
+    //     procedureIterator . next ();
+    //   String procedureName = entry . getKey ();
+    //   SymbolTableEntry idEntry = entry . getValue ();
+    //   idEntry . getEnvironment () . print (procedureName);
+    // }
   }
-  
+
 
 }
