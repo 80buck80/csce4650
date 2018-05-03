@@ -96,7 +96,7 @@ public class SymbolTabel
 {
   InputStream in;
   Scanner scanner;
-  public TangledWeb(InputStream input)
+  public SymbolTabel(InputStream input)
   {
     this.in = input;
     getInput(this.in);
