@@ -20,7 +20,7 @@ public class TinyJavaParsST {
       TinyJavaParserST parser =
       new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
       //java_cup .runtime . Symbol parserValue = parser . parse ();
-      SymbolTable env = (SymbolTable) parserValue . value;
+      //SymbolTable env = (SymbolTable) parserValue . value;
       //env . print ("main");
       evn . print (env);
     }
