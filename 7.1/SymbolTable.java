@@ -126,102 +126,50 @@ public class SymbolTable {
   // symbol tables and syntax trees for procedures.
 
   public void print (String blockName) {
-  //   System . out . println ("");
-  //   System . out . println ("Identifier Table for " + blockName);
-  //   System . out . print ("---------------------");
-  //   for (int i = 0; i < blockName . length (); i++)
-  //     System . out . print ("-");
-  //   System . out . println ("");
-  //   System . out . println ("");
-  //   System . out . print ("Id");
-  //   for (int i = 2; i < maxLen (); i++)
-  //     System . out . print (" ");
-  //   System . out . println (" Category");
-  //   System . out . print ("--");
-  //   for (int i = 2; i < maxLen (); i++)
-  //     System . out . print (" ");
-  //   System . out . println (" --------");
-  //   Iterator <Map . Entry <String, SymbolTableEntry>> envIterator =
-  //     table . entrySet () . iterator ();
-  //   TreeMap <String, SymbolTableEntry> procedureList =
-  //     new TreeMap <String, SymbolTableEntry> ();
-  //   while (envIterator . hasNext ()) {
-  //     Map . Entry <String, SymbolTableEntry> entry = envIterator . next ();
-  //     String id = entry . getKey ();
-  //     SymbolTableEntry idEntry = entry . getValue ();
-  //     System . out . print (id);
-  //     for (int i = id . length (); i < maxLen (); i++)
-  //       System . out . print (" ");
-  //     System . out . print (" ");
-  //     System . out . println (idEntry);
-  //     if (idEntry . category () == Category . FUNCTION)
-  //       procedureList . put (id, idEntry);
-  //     if (idEntry . category () == Category . CLASS)
-  //       procedureList . put (id, idEntry);
-  //
-  //   }
-  //   Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
-  //     procedureList . entrySet () . iterator ();
-  //   while (procedureIterator . hasNext ()) {
-  //     Map . Entry <String, SymbolTableEntry> entry =
-  //       procedureIterator . next ();
-  //     String procedureName = entry . getKey ();
-  //     SymbolTableEntry idEntry = entry . getValue ();
-  //     idEntry . getEnvironment () . print (procedureName);
-  //   }
-  // }
-    switch(blockName)
-    {
-        case "Test1.java":
-              System.out.println("#include <stdio.h>"+
-                                  ""+
-                                  "int main () {"+
-                                  "  int my_list [100]; "+
-                                  "  int my_list_tl [100];"+
-                                  "  int r; "+
-                                  "  int h; "+
-                                  "  int i;"+
-                                  "  int _T1;"+
-                                  "  int _T2;"+
-                                  "  int _T3;"+
-                                  "  int _T4;"+
-                                  "  int _T5;"+
-                                  "  int _T6;"+
-                                  "  int _T7;"+
-                                  "  r = 2;"+
-                                  "_L1:"+
-                                  "  if (r < 5) goto _L2;"+
-                                  "  goto _L3;"+
-                                  "_L2:"+
-                                  "  _T1 = r - 2;"+
-                                  "  my_list [_T1] = r;"+
-                                  "  _T2 = r + 1;"+
-                                  "  r = _T2;"+
-                                  "  goto _L1;"+
-                                  "_L3:"+
-                                  "  _T3 = my_list [0];"+
-                                  "  h = _T3;"+
-                                  "  i = r;"+
-                                  "_L4:"+
-                                  "  if (i > 0) goto _L5;"+
-                                  "  goto _L6;"+
-                                  "_L5:"+
-                                  "  _T4 = i - 1;"+
-                                  "  _T5 = my_list [i];"+
-                                  "  my_list_tl [_T4] = _T5;"+
-                                  "  _T6 = i - 1;"+
-                                  "  i = _T6;"+
-                                  "  goto _L4;"+
-                                  "_L6:"+
-                                  "  printf (%d, h); "+
-                                  "  _T7 = my_list_tl [0];"+
-                                  "  printf (%d, _T7);"+
-                                  "  return 0;"+
-                                  "}");
+    System . out . println ("");
+    System . out . println ("Identifier Table for " + blockName);
+    System . out . print ("---------------------");
+    for (int i = 0; i < blockName . length (); i++)
+      System . out . print ("-");
+    System . out . println ("");
+    System . out . println ("");
+    System . out . print ("Id");
+    for (int i = 2; i < maxLen (); i++)
+      System . out . print (" ");
+    System . out . println (" Category");
+    System . out . print ("--");
+    for (int i = 2; i < maxLen (); i++)
+      System . out . print (" ");
+    System . out . println (" --------");
+    Iterator <Map . Entry <String, SymbolTableEntry>> envIterator =
+      table . entrySet () . iterator ();
+    TreeMap <String, SymbolTableEntry> procedureList =
+      new TreeMap <String, SymbolTableEntry> ();
+    while (envIterator . hasNext ()) {
+      Map . Entry <String, SymbolTableEntry> entry = envIterator . next ();
+      String id = entry . getKey ();
+      SymbolTableEntry idEntry = entry . getValue ();
+      System . out . print (id);
+      for (int i = id . length (); i < maxLen (); i++)
+        System . out . print (" ");
+      System . out . print (" ");
+      System . out . println (idEntry);
+      if (idEntry . category () == Category . FUNCTION)
+        procedureList . put (id, idEntry);
+      if (idEntry . category () == Category . CLASS)
+        procedureList . put (id, idEntry);
+
     }
-
-
-
+    Iterator <Map . Entry <String, SymbolTableEntry>> procedureIterator =
+      procedureList . entrySet () . iterator ();
+    while (procedureIterator . hasNext ()) {
+      Map . Entry <String, SymbolTableEntry> entry =
+        procedureIterator . next ();
+      String procedureName = entry . getKey ();
+      SymbolTableEntry idEntry = entry . getValue ();
+      idEntry . getEnvironment () . print (procedureName);
+    }
   }
+  
 
 }

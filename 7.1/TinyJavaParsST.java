@@ -18,8 +18,8 @@ public class TinyJavaParsST {
       new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
       SymbolTable env = (SymbolTable) parserValue . value;
-      //env . print ("main");
-      env . print (args[1]);
+      env . print ("main");
+      System.out.println(args[1]);
       //printProgram(args[1]);
     }
     catch (Exception e) {
