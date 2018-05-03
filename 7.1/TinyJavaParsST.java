@@ -15,7 +15,7 @@ public class TinyJavaParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      Object in = System.in;
+      InputStream in = System.in;
       // Scanner scanner = new Scanner( in );
       // String input = scanner.nextLine();
       // System.out.println("Read in " + input);
