@@ -60,9 +60,9 @@ class SymbolTabel
                   System.out.println(c);
                 }
               }
-              finaly
+              finally
               {
-                if (ifs != null) 
+                if (ifs != null)
                 {
                     ifs.close();
                 }
