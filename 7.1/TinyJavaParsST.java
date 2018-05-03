@@ -5,7 +5,7 @@
 
 import java_cup . runtime . *;
 import java.util.Scanner;
-import java.io.InputStream;
+import java.io.BufferedInputStream;
 
 public class TinyJavaParsST {
 
@@ -36,7 +36,7 @@ public class TinyJavaParsST {
 }
 class SymbolTabel
 {
-  InputStream is;
+  BufferedInputStream is;
   BufferedInputStream in;
   String file;
   Scanner scanner;
