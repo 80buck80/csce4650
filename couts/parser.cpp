@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
 	{
 		ifs.getline(input, 1000);
 		s = string(input);
-		ofs << "\"" + s + "\"+ \n";
+		ofs << "\"" + s + "\\n\" + " + "\n";
 		
 	}
 	
