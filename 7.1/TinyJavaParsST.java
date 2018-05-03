@@ -46,7 +46,7 @@ class SymbolTabel
 
   }
 
-  public void print(String s) throws IOException
+  public void print(String s) throws java.io.IOException
   {
     switch(file)
     {
