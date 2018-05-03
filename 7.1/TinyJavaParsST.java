@@ -40,7 +40,7 @@ class SymbolTabel
   BufferedInputStream in;
   String file;
   Scanner scanner;
-  public SymbolTabel(InputStream input)
+  public SymbolTabel(BufferedInputStream input)
   {
     this.is = input;
     this.in = new BufferedInputStream(input);
