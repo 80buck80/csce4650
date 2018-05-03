@@ -48,7 +48,7 @@ class SymbolTabel
 
   public void print(String s)
   {
-
+    System.out.println("HERE");
     switch(file)
     {
         case "// Test1.java":
