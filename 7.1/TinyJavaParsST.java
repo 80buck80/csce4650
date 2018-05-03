@@ -53,7 +53,7 @@ class SymbolTabel
         case "// Test1.java":
               try
               {
-                System.out.println('HERE');
+                System.out.println("HERE");
                 ifs = new java.io.FileInputStream("./test/Test1.java");
                 int c;
                 while ((c = ifs.read()) != -1)
