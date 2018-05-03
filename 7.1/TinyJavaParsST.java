@@ -48,10 +48,6 @@ class SymbolTabel
 
   public void print(String s)
   {
-    // System.out.println("HERE");
-    // scanner = new Scanner(in);
-    // file = scanner.nextLine();
-
 
     switch(file)
     {
