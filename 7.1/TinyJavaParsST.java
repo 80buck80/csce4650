@@ -36,14 +36,13 @@ class SymbolTabel
 {
   String file;
   java.util.Scanner scanner;
-  java.util.Scanner scanner2;
+  java.io.InputStream in;
 
 
   public SymbolTabel(java.io.InputStream input)
   {
-
+    in = new java.io.ByteArrayInputStream( input.getBytes() );
     scanner = new java.util.Scanner(input);
-    scanner2 = scanner.clone();
     file = scanner.nextLine();
 
   }
