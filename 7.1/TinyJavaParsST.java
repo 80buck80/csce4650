@@ -37,6 +37,7 @@ class SymbolTabel
 {
   InputStream in;
   Scanner scanner;
+  String file;
   public SymbolTabel(InputStream input)
   {
     this.in = input;
@@ -47,7 +48,7 @@ class SymbolTabel
   {
     System.out.println("HERE");
     scanner = new Scanner(in);
-    String file = scanner.nextLine();
+    file = scanner.nextLine();
     System.out.println("File name: " + file);
 
     switch(file)
