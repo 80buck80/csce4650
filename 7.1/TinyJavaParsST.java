@@ -36,19 +36,19 @@ public class TinyJavaParsST {
 class SymbolTabel
 {
   InputStream in;
-  Scanner scanner;
-  String file;
+
   public SymbolTabel(InputStream input)
   {
     this.in = input;
-    // scanner = new Scanner(input);
-    // file = scanner.nextLine();
-    // System.out.println("File name: " + file);
+
   }
 
   public void print(String s)
   {
     System.out.println(in);
+    Scanner scanner = new Scanner(input);
+    String file = scanner.nextLine();
+    System.out.println("File name: " + file);
     switch(file)
     {
         case "// Test1.java":
