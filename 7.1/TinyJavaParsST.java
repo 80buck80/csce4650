@@ -36,7 +36,7 @@ class SymbolTabel
 {
   String file;
   java.util.Scanner scanner;
-
+  java.io.FileInputStream ifs;
 
   public SymbolTabel(java.io.InputStream input)
   {
@@ -51,6 +51,14 @@ class SymbolTabel
     switch(file)
     {
         case "// Test1.java":
+              ifs = new java.io.FileInputStream("./test/Test1.java");
+              int c;
+              while ((c = in.read()) != -1)
+              {
+                System.out.println(c);
+              }
+              System.out.println();
+              System.out.println();
               System.out.println("#include <stdio.h>\n"+
                                   "\n"+
                                   "int main () {\n"+
