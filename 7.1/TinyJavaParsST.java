@@ -5,6 +5,7 @@
 
 import java_cup . runtime . *;
 import java.util.Scanner;
+import java.io.InputStream;
 
 public class TinyJavaParsST {
 
