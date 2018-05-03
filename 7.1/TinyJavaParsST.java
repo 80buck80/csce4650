@@ -4,7 +4,8 @@
 // the source program declarations.
 
 import java_cup . runtime . *;
-
+// import java.util.Scanner;
+// import java.io.InputStream;
 
 
 public class TinyJavaParsST {
@@ -33,20 +34,13 @@ public class TinyJavaParsST {
 
 
 }
-
-
-import java.util.Scanner;
-import java.io.InputStream;
-
-
 class SymbolTabel
 {
-  InputStream in;
   String file;
-  Scanner scanner;
-  public SymbolTabel(InputStream input)
+
+  public SymbolTabel(java.io.InputStream input)
   {
-    scanner = new Scanner(input);
+    java.util.Scanner scanner = new java.util.Scanner(input);
     file = scanner.nextLine();
 
   }
