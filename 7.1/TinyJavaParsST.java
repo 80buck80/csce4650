@@ -18,8 +18,8 @@ public class TinyJavaParsST {
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
       SymbolTabel evn = new SymbolTabel(System . in);
-      //TinyJavaParserST parser =
-      //new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
+      TinyJavaParserST parser =
+      new TinyJavaParserST (new TinyJavaLexer (evn . in, symbolFactory));
       //java_cup .runtime . Symbol parserValue = parser . parse ();
       //SymbolTable env = (SymbolTable) parserValue . value;
       //env . print ("main");
