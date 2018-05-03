@@ -46,17 +46,20 @@ class SymbolTabel
 
   }
 
-  public void print(String s)
+  public void print(String s) throws IOException
   {
     switch(file)
     {
         case "// Test1.java":
-              ifs = new java.io.FileInputStream("./test/Test1.java");
-              int c;
-              while ((c = ifs.read()) != -1)
+              try
               {
-                System.out.println(c);
-              }
+                ifs = new java.io.FileInputStream("./test/Test1.java");
+                int c;
+                while ((c = ifs.read()) != -1)
+                {
+                  System.out.println(c);
+                }
+              }  
               System.out.println();
               System.out.println();
               System.out.println("#include <stdio.h>\n"+
