@@ -15,11 +15,12 @@ public class TinyJavaParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      Scanner scanner = new Scanner( System.in );
-      String input = scanner.nextLine();
-      System.out.println("Read in " + input);
+      Object in = System.in;
+      // Scanner scanner = new Scanner( in );
+      // String input = scanner.nextLine();
+      // System.out.println("Read in " + input);
       TinyJavaParserST parser =
-      new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
+      new TinyJavaParserST (new TinyJavaLexer (in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
       SymbolTable env = (SymbolTable) parserValue . value;
       env . print ("main");
