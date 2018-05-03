@@ -86,28 +86,24 @@ public class TinyJavaParsST {
   //
   //
   // }
-
-}
-
-
-
-
-public class SymbolTabel
-{
-  InputStream in;
-  Scanner scanner;
-  public SymbolTabel(InputStream input)
+  public class SymbolTabel
   {
-    this.in = input;
-    getInput(this.in);
-  }
+    InputStream in;
+    Scanner scanner;
+    public SymbolTabel(InputStream input)
+    {
+      this.in = input;
+      getInput(this.in);
+    }
 
-  public void getInput(InputStream in)
-  {
-    scanner = new Scanner( in );
-    String input = scanner.nextLine();
-    System.out.println("Read in " + input);
-  }
+    public void getInput(InputStream in)
+    {
+      scanner = new Scanner( in );
+      String input = scanner.nextLine();
+      System.out.println("Read in " + input);
+    }
 
+
+  }
 
 }
