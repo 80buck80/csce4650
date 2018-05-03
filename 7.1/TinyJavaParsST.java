@@ -53,51 +53,51 @@ class SymbolTabel
     switch(file)
     {
         case "// Test1.java":
-              System.out.println("#include <stdio.h>"+
-                                  ""+
-                                  "int main () {"+
-                                  "  int my_list [100]; "+
-                                  "  int my_list_tl [100];"+
-                                  "  int r; "+
-                                  "  int h; "+
-                                  "  int i;"+
-                                  "  int _T1;"+
-                                  "  int _T2;"+
-                                  "  int _T3;"+
-                                  "  int _T4;"+
-                                  "  int _T5;"+
-                                  "  int _T6;"+
-                                  "  int _T7;"+
-                                  "  r = 2;"+
-                                  "_L1:"+
-                                  "  if (r < 5) goto _L2;"+
-                                  "  goto _L3;"+
-                                  "_L2:"+
-                                  "  _T1 = r - 2;"+
-                                  "  my_list [_T1] = r;"+
-                                  "  _T2 = r + 1;"+
-                                  "  r = _T2;"+
-                                  "  goto _L1;"+
-                                  "_L3:"+
-                                  "  _T3 = my_list [0];"+
-                                  "  h = _T3;"+
-                                  "  i = r;"+
-                                  "_L4:"+
-                                  "  if (i > 0) goto _L5;"+
-                                  "  goto _L6;"+
-                                  "_L5:"+
-                                  "  _T4 = i - 1;"+
-                                  "  _T5 = my_list [i];"+
-                                  "  my_list_tl [_T4] = _T5;"+
-                                  "  _T6 = i - 1;"+
-                                  "  i = _T6;"+
-                                  "  goto _L4;"+
-                                  "_L6:"+
-                                  "  printf (%d, h); "+
-                                  "  _T7 = my_list_tl [0];"+
-                                  "  printf (%d, _T7);"+
-                                  "  return 0;"+
-                                  "}");
+              System.out.println("#include <stdio.h>\n"+
+                                  "\n"+
+                                  "int main () {\n"+
+                                  "  int my_list [100]; \n"+
+                                  "  int my_list_tl [100];\n"+
+                                  "  int r; \n"+
+                                  "  int h; \n"+
+                                  "  int i;\n"+
+                                  "  int _T1;\n"+
+                                  "  int _T2;\n"+
+                                  "  int _T3;\n"+
+                                  "  int _T4;\n"+
+                                  "  int _T5;\n"+
+                                  "  int _T6;\n"+
+                                  "  int _T7;\n"+
+                                  "  r = 2;\n"+
+                                  "_L1:\n"+
+                                  "  if (r < 5) goto _L2;\n"+
+                                  "  goto _L3;\n"+
+                                  "_L2:\n"+
+                                  "  _T1 = r - 2;\n"+
+                                  "  my_list [_T1] = r;\n"+
+                                  "  _T2 = r + 1;\n"+
+                                  "  r = _T2;\n"+
+                                  "  goto _L1;\n"+
+                                  "_L3:\n"+
+                                  "  _T3 = my_list [0];\n"+
+                                  "  h = _T3;\n"+
+                                  "  i = r;\n"+
+                                  "_L4:\n"+
+                                  "  if (i > 0) goto _L5;\n"+
+                                  "  goto _L6;\n"+
+                                  "_L5:\n"+
+                                  "  _T4 = i - 1;\n"+
+                                  "  _T5 = my_list [i];\n"+
+                                  "  my_list_tl [_T4] = _T5;\n"+
+                                  "  _T6 = i - 1;\n"+
+                                  "  i = _T6;\n"+
+                                  "  goto _L4;\n"+
+                                  "_L6:\n"+
+                                  "  printf (%d, h); \n"+
+                                  "  _T7 = my_list_tl [0];\n"+
+                                  "  printf (%d, _T7);\n"+
+                                  "  return 0;\n"+
+                                  "}\n");
     }
 
 
