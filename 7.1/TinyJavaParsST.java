@@ -45,6 +45,7 @@ class SymbolTabel
 
   public void print(String s)
   {
+    System.out.println("HERE");
     scanner = new Scanner(in);
     String file = scanner.nextLine();
     System.out.println("File name: " + file);
