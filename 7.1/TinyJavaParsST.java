@@ -14,12 +14,13 @@ public class TinyJavaParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
+      System.out.println(System.in);
       TinyJavaParserST parser =
       new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
       SymbolTable env = (SymbolTable) parserValue . value;
       env . print ("main");
-      System.out.println(args[1]);
+
       //printProgram(args[1]);
     }
     catch (Exception e) {
