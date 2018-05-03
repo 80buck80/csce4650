@@ -41,7 +41,7 @@ class SymbolTabel
   Scanner scanner;
   public SymbolTabel(InputStream input)
   {
-    scanner = new Scanner(in);
+    scanner = new Scanner(input);
     file = scanner.nextLine();
 
   }
