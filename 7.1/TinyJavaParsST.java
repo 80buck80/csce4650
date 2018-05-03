@@ -108,9 +108,9 @@ class SymbolTabel
                                   "  i = _T6;\n" +
                                   "  goto _L4;\n" +
                                   "_L6:\n" +
-                                  "  printf ("%d", h); \n" +
+                                  "  printf (\"%d\", h); \n" +
                                   "  _T7 = my_list_tl [0];\n" +
-                                  "  printf ("%d", _T7);\n" +
+                                  "  printf (\"%d\", _T7);\n" +
                                   "  return 0;\n" +
                                   "}\n");
     }
