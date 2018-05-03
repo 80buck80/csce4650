@@ -51,7 +51,7 @@ class SymbolTabel
 
   public void print()
   {
-    String file = getInput(input);
+    String file = getInput(in);
 
     switch(file)
     {
