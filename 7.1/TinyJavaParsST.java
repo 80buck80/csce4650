@@ -44,6 +44,7 @@ class SymbolTabel
     this.in = input;
     scanner = new Scanner(in);
     file = scanner.nextLine();
+    System.setIn(scanner);
 
   }
 
