@@ -14,7 +14,7 @@ public class TinyJavaParsST {
 
     try {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
-      System.out.println("Read in " + System.in);
+      System.out.println(to_string(System.in));
       TinyJavaParserST parser =
       new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
       java_cup .runtime . Symbol parserValue = parser . parse ();
