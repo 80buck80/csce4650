@@ -41,15 +41,17 @@ class SymbolTabel
   public SymbolTabel(InputStream input)
   {
     this.in = input;
-    //getInput(this.input);
+    scanner = new Scanner(input);
+    file = scanner.nextLine();
+    System.out.println("File name: " + file);
   }
 
   public void print(String s)
   {
-    System.out.println("HERE");
-    scanner = new Scanner(in);
-    file = scanner.nextLine();
-    System.out.println("File name: " + file);
+    // System.out.println("HERE");
+    // scanner = new Scanner(in);
+    // file = scanner.nextLine();
+
 
     switch(file)
     {
