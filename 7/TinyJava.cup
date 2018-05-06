@@ -133,7 +133,7 @@ mainDeclaration ::=
     {: other = env; /* temp stores previous environment */
        env = new SymbolTable();
        env.enterVar("String", "args");
-       other.enterFunction("void", "main", "String args[]", env, "");
+       other.enterFunction("void", "main", "String args[]", env, argumentDeclarationListOption:adlo);
     :};
 
 type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: RESULT = "boolean"; :} ;
