@@ -91,7 +91,7 @@ functionDefinition ::= functionDeclaration LBRACE
     variableDeclarationList statementList returnStatementOption RBRACE {: env = other; :}
   | functionDeclaration LBRACE statementList returnStatementOption RBRACE {: env = other; :}
   | functionDeclaration LBRACE variableDeclarationList returnStatementOption RBRACE {: env = other; :}
-  | functionDeclaration LBRACE returnStatementOption RBRACE {: other.enterFunction(t, id, arg, env, ""); :};
+  | functionDeclaration LBRACE returnStatementOption RBRACE {: env = other; :};
 
 
 functionDeclaration ::=
