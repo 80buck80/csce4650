@@ -133,7 +133,7 @@ mainDeclaration ::=
     {: other = env; /* temp stores previous environment */
        env = new SymbolTable();
        env.enterVar("String", "args");
-       other.enterFunction("void", "main", "String args[]", env, );
+       other.enterFunction("void", "main", "String args[]", env, "");
     :};
 
 type ::= classId:id {: RESULT = id; :} | INT {: RESULT = "int"; :}| BOOLEAN {: RESULT = "boolean"; :} ;
@@ -150,10 +150,10 @@ compoundStatement ::= LBRACE statementList RBRACE ;
 statementList ::= statementList statement | statement ;
 
 statement ::= compoundStatement
-  | assignmentStatement:as SEMICOLON {:RESULT = as + ";\n":}
-  | IF LPAREN expression:e RPAREN statement:s elseOption:eo {:RESULT = "if (" + e + ")" + s + eo:}
-  | WHILE LPAREN expression:e RPAREN statement:s {:RESULT = "while (" + e + ")" + s :}
-  | SYSTEM DOT OUT DOT PRINTLN LPAREN expression:e RPAREN SEMICOLON {:RESULT = "printf(\"" + e + "\n\"" :};
+  | assignmentStatement:as SEMICOLON {:RESULT = as + ";\n"; :}
+  | IF LPAREN expression:e RPAREN statement:s elseOption:eo {:RESULT = "if (" + e + ")" + s + eo; :}
+  | WHILE LPAREN expression:e RPAREN statement:s {:RESULT = "while (" + e + ")" + s; :}
+  | SYSTEM DOT OUT DOT PRINTLN LPAREN expression:e RPAREN SEMICOLON {:RESULT = "printf(\"" + e + "\n\""; :};
 
 assignmentStatement ::= variable ASSIGN expression
   | variable ASSIGN NEW classId LPAREN RPAREN
@@ -176,12 +176,12 @@ relationalExpression ::=
     arithmeticExpression relationalOperator arithmeticExpression
   | arithmeticExpression ;
 
-relationalOperator ::= LT {:RESULT = "<":} |
-                      LE {:RESULT = "<=":} |
-                      GT {:RESULT = ">=":} |
-                      GE {:RESULT = ">=":} |
-                      EQ {:RESULT = "=":}  |
-                      NE {:RESULT = "!=":};
+relationalOperator ::= LT {:RESULT = "<"; :} |
+                      LE {:RESULT = "<="; :} |
+                      GT {:RESULT = ">="; :} |
+                      GE {:RESULT = ">="; :} |
+                      EQ {:RESULT = "="; :}  |
+                      NE {:RESULT = "!="; :};
 
 arithmeticExpression ::= term | arithmeticExpression addingOperator term ;
 
