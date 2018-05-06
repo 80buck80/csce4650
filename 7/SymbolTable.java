@@ -62,7 +62,7 @@ class SymbolTableEntry {
 
   public String getArgs () { return args; }
 
-  public void setCode (String newCode) {code = code + newCode};
+  public void setCode (String newCode) {code = code + newCode; }
 
   // public String toString () {
   //   String printString = Category . toString (category);
