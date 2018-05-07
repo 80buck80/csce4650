@@ -1,0 +1,207 @@
+Script started on Mon 06 May 2013 11:03:19 AM CDT
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make cleanTest Test2
+rm -f Test
+java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < Tests/Test2.java
+Source Program
+--------------
+
+// Test2.java
+
+// This program tests non-local referencing.
+
+import java.util.*;
+
+class Test2 {
+
+  static int h;  // non-local variable
+
+  public static int area (int x, int y) {
+    int z;
+    z = 2 * (x * y + (x * h) + y * h);
+    return z;
+  }
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int a; int b; int s;
+    {
+      a = in . nextInt ();
+      b = in . nextInt ();
+      h = in . nextInt ();
+      s = area (a, b);
+    }
+    System . out . println (s);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test2		classes		classes
+
+Identifier Table for Test2
+--------------------------
+
+Id		Category		Type
+--		--------		----
+h		variable		integer
+area		function		integer
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for area
+-------------------------
+
+Id		Category		Type
+--		--------		----
+x		parameter		integer
+y		parameter		integer
+z		variable		integer
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+a		variable		integer
+b		variable		integer
+s		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int h;
+int area(int x, int y){
+int z;
+z = 2 * (x * y + (x * h) + y * h);
+return z;
+}
+int main(int argc, char * argv[]) {
+int a;
+int b;
+int s;
+{
+scanf("%d", &a);
+scanf("%d", &b);
+scanf("%d", &h);
+s = area(a, b);
+}
+printf("%d\n", s);
+}
+
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test2
+java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < Tests/Test2.java
+Source Program
+--------------
+
+// Test2.java
+
+// This program tests non-local referencing.
+
+import java.util.*;
+
+class Test2 {
+
+  static int h;  // non-local variable
+
+  public static int area (int x, int y) {
+    int z;
+    z = 2 * (x * y + (x * h) + y * h);
+    return z;
+  }
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int a; int b; int s;
+    {
+      a = in . nextInt ();
+      b = in . nextInt ();
+      h = in . nextInt ();
+      s = area (a, b);
+    }
+    System . out . println (s);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test2		classes		classes
+
+Identifier Table for Test2
+--------------------------
+
+Id		Category		Type
+--		--------		----
+h		variable		integer
+area		function		integer
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for area
+-------------------------
+
+Id		Category		Type
+--		--------		----
+x		parameter		integer
+y		parameter		integer
+z		variable		integer
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+a		variable		integer
+b		variable		integer
+s		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int h;
+int area(int x, int y){
+int z;
+z = 2 * (x * y + (x * h) + y * h);
+return z;
+}
+int main(int argc, char * argv[]) {
+int a;
+int b;
+int s;
+{
+scanf("%d", &a);
+scanf("%d", &b);
+scanf("%d", &h);
+s = area(a, b);
+}
+printf("%d\n", s);
+}
+
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./[K[Kmake Test
+gcc Test.c -o Test
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+3
+3
+3
+54
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ exit
+exit
+
+Script done on Mon 06 May 2013 11:03:52 AM CDT

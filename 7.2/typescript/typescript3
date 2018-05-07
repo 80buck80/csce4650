@@ -1,0 +1,113 @@
+Script started on Mon 06 May 2013 11:04:02 AM CDT
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make cleanTest make[K[K[K[KTest3
+rm -f Test
+java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < Tests/Test3.java
+Source Program
+--------------
+
+// Test3.java
+
+import java.util.*;
+
+// This program tests recursive functions.
+
+class Test3 {
+
+  public static int facto (int x) {
+    int s;
+    if (x == 1)
+      s = 1;
+    else
+      s = x * facto (x - 1);
+    return s;
+  }
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int i; int fac;
+    {
+      i = in . nextInt ();
+      fac = facto (i);
+    }
+    System . out . println (fac);
+  }
+}
+
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test3		classes		classes
+
+Identifier Table for Test3
+--------------------------
+
+Id		Category		Type
+--		--------		----
+facto		function		integer
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for facto
+--------------------------
+
+Id		Category		Type
+--		--------		----
+x		parameter		integer
+s		variable		integer
+
+Identifier Table for facto
+--------------------------
+
+Id		Category		Type
+--		--------		----
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+i		variable		integer
+fac		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int facto(int x){
+int s;
+if (x == 1) s = 1;
+else s = x * facto(x - 1);
+return s;
+}
+int main(int argc, char * argv[]) {
+int i;
+int fac;
+{
+scanf("%d", &i);
+fac = facto(i);
+}
+printf("%d\n", fac);
+}
+
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test
+gcc Test.c -o Test
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+5
+120
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+3
+6
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+6
+720
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ exit
+exit
+
+Script done on Mon 06 May 2013 11:04:40 AM CDT

@@ -1,0 +1,95 @@
+Script started on Mon 06 May 2013 11:04:50 AM CDT
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make cleanTest ma[K[KTest4
+rm -f Test
+java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < Tests/Test4.java
+Source Program
+--------------
+
+// Test6.java
+
+import java.util.*;
+
+class Test6 {
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int q; int r; int x; int y;
+    x = in . nextInt ();
+    y = in . nextInt ();
+    q = 0;
+    r = x;
+    while (r >= y) {
+      q = q + 1;
+      r = r - y;
+    }
+    System . out . println (q);
+    System . out . println (r);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test6		classes		classes
+
+Identifier Table for Test6
+--------------------------
+
+Id		Category		Type
+--		--------		----
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+q		variable		integer
+r		variable		integer
+x		variable		integer
+y		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char * argv[]) {
+int q;
+int r;
+int x;
+int y;
+scanf("%d", &x);
+scanf("%d", &y);
+q = 0;
+r = x;
+while (r >= y) {
+q = q + 1;
+r = r - y;
+}
+printf("%d\n", q);
+printf("%d\n", r);
+}
+
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test
+gcc Test.c -o Test
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test4
+bash: ./Test4: No such file or directory
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test
+make: `Test' is up to date.
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+4
+5
+0
+4
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ exit
+exit
+
+Script done on Mon 06 May 2013 11:05:51 AM CDT

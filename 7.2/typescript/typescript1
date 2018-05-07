@@ -1,0 +1,228 @@
+Script started on Mon 06 May 2013 11:02:32 AM CDT
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make clean TinyJava
+rm -f *.class Symbol.java TinyJavaLexer.java TinyJavaParserST.java Test *.c
+cup -parser TinyJavaParserST -symbols Symbol -expect 150 -nowarn -nosummary TinyJavaST.cup
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  and     NT$5 ::= (*) 
+  under symbols: {}
+  Resolved in favor of the first production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  and     NT$2 ::= (*) 
+  under symbols: {ID, BOOLEAN, INT}
+  Resolved in favor of the second production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  and     NT$3 ::= (*) 
+  under symbols: {ID}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*) 
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$5 ::= (*) 
+  and     NT$2 ::= (*) 
+  under symbols: {}
+  Resolved in favor of the second production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$5 ::= (*) 
+  and     NT$3 ::= (*) 
+  under symbols: {}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*) 
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*) 
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$2 ::= (*) 
+  and     NT$3 ::= (*) 
+  under symbols: {ID}
+  Resolved in favor of the first production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*) 
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*) 
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*) 
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*) 
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #104
+  between NT$40 ::= (*) 
+  and     NT$37 ::= (*) 
+  under symbols: {ID}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #104
+  between NT$40 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #104
+  between NT$37 ::= (*) 
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #189
+  between elseOption ::= (*) 
+  and     elseOption ::= (*) ELSE NT$32 statement 
+  under symbol ELSE
+  Resolved in favor of shifting.
+
+jflex TinyJava.jflex
+Reading "TinyJava.jflex"
+Constructing NFA : 327 states in NFA
+Converting NFA to DFA : 
+.....................................................................................................................................................
+151 states before minimization, 146 states in minimized DFA
+Writing code to "TinyJavaLexer.java"
+javac -cp .:java-cup-11a-runtime.jar TinyJavaLexer.java
+javac -cp .:java-cup-11a-runtime.jar TinyJavaParsST.java
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test1
+java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < Tests/Test1.java
+Source Program
+--------------
+
+// Test1.java
+
+import java.util.*;
+
+class Test1 {
+
+  public static void main (String args []) {
+    int my_list [] = new int [100]; 
+    int my_list_tl [] = new int [100];
+    int r; int h; int i;
+    {
+      r = 2;
+      while (r < 5) {  
+        my_list [r - 2] = r;
+        r = r + 1;
+      }  
+      h = my_list [0];
+      i = r;
+      while (i > 0) {
+	my_list_tl [i - 1] = my_list [i];
+	i = i - 1;
+      }
+    }
+    System . out . println (h); 
+    System . out . println (my_list_tl [0]);
+  }
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test1		classes		classes
+
+Identifier Table for Test1
+--------------------------
+
+Id		Category		Type
+--		--------		----
+main		function		classes
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+my_list		variable		integer
+my_list_tl		variable		integer
+r		variable		integer
+h		variable		integer
+i		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char * argv[]) {
+int my_list[100] ;
+int my_list_tl[100] ;
+int r;
+int h;
+int i;
+{
+r = 2;
+while (r < 5) {
+my_list[r - 2] = r;
+r = r + 1;
+}
+h = my_list[0];
+i = r;
+while (i > 0) {
+my_list_tl[i - 1] = my_list[i];
+i = i - 1;
+}
+}
+printf("%d\n", h);
+printf("%d\n", my_list_tl[0]);
+}
+
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ make Test
+gcc Test.c -o Test
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ ./Test
+2
+3
+]0;ka-son@kason-Lenovo-IdeaPad-S300: ~/Documents/CSCE3650/CSCE3650KaSonChanHW6ka-son@kason-Lenovo-IdeaPad-S300:~/Documents/CSCE3650/CSCE3650KaSonChanHW6$ exit
+exit
+
+Script done on Mon 06 May 2013 11:03:01 AM CDT
