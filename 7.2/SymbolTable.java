@@ -1,9 +1,5 @@
 /*
     SymbolTable.java
-    Programmer: Ka Son Chan KaSonChan@my.unt.edu
-    Class: CSCE 3650, Spring 2013
-    Due: May 08, 2013
-    cse01.cse.unt.edu
 */
 
 import java.util.*;
@@ -30,7 +26,7 @@ public class SymbolTable
     }
 
     // SymbolTableEntry class
-    private class SymbolTableEntry 
+    private class SymbolTableEntry
     {
         private String id;
         private String envName;
@@ -74,7 +70,7 @@ public class SymbolTable
     {
         SymbolTableEntry tempEntry = envHead;
         SymbolTableEntry newEntry = new SymbolTableEntry("", envName, "", "");
-        
+
         // If table is empty
         if(envHead == null)
         {
@@ -114,7 +110,7 @@ public class SymbolTable
                 {
                     // If env is empty
                     if(tempEntry.nextEntry == null)
-                        tempEntry.nextEntry = newEntry;         
+                        tempEntry.nextEntry = newEntry;
                     // Else if env is not empty
                     else
                     {
@@ -124,7 +120,7 @@ public class SymbolTable
                         {
                             currEntry = currEntry.nextEntry;
                         }
-                        
+
                         currEntry.nextEntry = newEntry;
                     }
                 }
@@ -139,8 +135,8 @@ public class SymbolTable
         // Print the header
         System . out . println ("");
         System . out . println ("Identifier Table for " + blockName);
-        System . out . print ("---------------------");        
-        for (int i = 0; i < blockName . length (); i++) 
+        System . out . print ("---------------------");
+        for (int i = 0; i < blockName . length (); i++)
             System . out . print ("-");
         System . out . println ("");
         System . out . println ("");
@@ -170,7 +166,7 @@ public class SymbolTable
         }
         // Else if envhead is not empty
         else
-        {            
+        {
             while(tempEntry != null)
             {
                 PrintHeader(tempEntry.envName);
@@ -184,7 +180,7 @@ public class SymbolTable
                     while(currEntry != null)
                     {
                         System.out.println(currEntry.id + "\t\t" + currEntry.category + "\t\t" + currEntry.type);
-                        
+
                         currEntry = currEntry.nextEntry;
                     }
                     currEntry = tempEntry.nextEntry;
@@ -207,7 +203,7 @@ public class SymbolTable
         }
         // Else if envhead is not empty
         else
-        {            
+        {
             while(tempEntry != null)
             {
                 currEntry = tempEntry.nextEntry;
@@ -219,7 +215,7 @@ public class SymbolTable
                     while(currEntry != null)
                     {
                         if((currEntry.id).equals(id))
-                            return true;                     
+                            return true;
                         currEntry = currEntry.nextEntry;
                     }
                     currEntry = tempEntry.nextEntry;

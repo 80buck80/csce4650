@@ -1,10 +1,5 @@
 /*
     TinyJavaParsST.java
-    Programmer: Ka Son Chan KaSonChan@my.unt.edu
-    Class: CSCE 3650, Spring 2013
-    Due: May 08, 2013
-    cse01.cse.unt.edu
-    This program is a parser for TinyJava which contsructs the symbol table from the source program declarations.
 */
 
 import java.util.*;
@@ -22,7 +17,7 @@ public class TinyJavaParsST {
     System . out . println ("--------------");
     System . out . println ();
 
-    try 
+    try
     {
       SymbolFactory symbolFactory = new ComplexSymbolFactory ();
       TinyJavaParserST parser = new TinyJavaParserST (new TinyJavaLexer (System . in, symbolFactory));
