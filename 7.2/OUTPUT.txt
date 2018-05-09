@@ -1,0 +1,879 @@
+adb0026@cse01:~/4650/7.2$ cup -parser TinyJavaParserST -symbols Symbol -expect 150 TinyJavaST.cup
+Warning : Non terminal "scannerDeclarationOption" was declared but never used
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  and     NT$5 ::= (*)
+  under symbols: {}
+  Resolved in favor of the first production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  and     NT$2 ::= (*)
+  under symbols: {ID, BOOLEAN, INT}
+  Resolved in favor of the second production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  and     NT$3 ::= (*)
+  under symbols: {ID}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$4 ::= (*)
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$5 ::= (*)
+  and     NT$2 ::= (*)
+  under symbols: {}
+  Resolved in favor of the second production.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$5 ::= (*)
+  and     NT$3 ::= (*)
+  under symbols: {}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*)
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$5 ::= (*)
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #53
+  between NT$2 ::= (*)
+  and     NT$3 ::= (*)
+  under symbols: {ID}
+  Resolved in favor of the first production.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*)
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$2 ::= (*)
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*)
+  under symbol BOOLEAN
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #53
+  between NT$3 ::= (*)
+  under symbol INT
+  Resolved in favor of shifting.
+
+Warning : *** Reduce/Reduce conflict found in state #104
+  between NT$40 ::= (*)
+  and     NT$37 ::= (*)
+  under symbols: {ID}
+  Resolved in favor of the second production.
+
+Warning : *** Shift/Reduce conflict found in state #104
+  between NT$40 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #104
+  between NT$37 ::= (*)
+  under symbol ID
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #189
+  between elseOption ::= (*)
+  and     elseOption ::= (*) ELSE NT$32 statement
+  under symbol ELSE
+  Resolved in favor of shifting.
+
+Warning : *** Production "NT$40 ::= " never reduced
+Warning : *** Production "statementListOption ::= " never reduced
+Warning : *** Production "statementListOption ::= statementList " never reduced
+Warning : *** Production "NT$4 ::= " never reduced
+------- CUP v0.11a beta 20060608 Parser Generation Summary -------
+  0 errors and 27 warnings
+  53 terminals, 90 non-terminals, and 143 productions declared,
+  producing 265 unique parse states.
+  1 terminal declared but not used.
+  0 non-terminal declared but not used.
+  0 productions never reduced.
+  22 conflicts detected (150 expected).
+  Code written to "TinyJavaParserST.java", and "Symbol.java".
+---------------------------------------------------- (v0.11a beta 20060608)
+adb0026@cse01:~/4650/7.2$ jflex TinyJava.jflex
+Reading "TinyJava.jflex"
+Constructing NFA : 327 states in NFA
+Converting NFA to DFA :
+.....................................................................................................................................................
+151 states before minimization, 146 states in minimized DFA
+Old file "TinyJavaLexer.java" saved as "TinyJavaLexer.java~"
+Writing code to "TinyJavaLexer.java"
+adb0026@cse01:~/4650/7.2$ javac -cp .:java-cup-11a-runtime.jar TinyJavaLexer.java
+adb0026@cse01:~/4650/7.2$ javac -cp .:java-cup-11a-runtime.jar TinyJavaParsST.java
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test1.java
+Source Program
+--------------
+
+// Test1.java
+
+import java.util.*;
+
+class Test1 {
+
+  public static void main (String args []) {
+    int my_list [] = new int [100];
+    int my_list_tl [] = new int [100];
+    int r; int h; int i;
+    {
+      r = 2;
+      while (r < 5) {
+        my_list [r - 2] = r;
+        r = r + 1;
+      }
+      h = my_list [0];
+      i = r;
+      while (i > 0) {
+	my_list_tl [i - 1] = my_list [i];
+	i = i - 1;
+      }
+    }
+    System . out . println (h);
+    System . out . println (my_list_tl [0]);
+  }
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test1		classes		classes
+
+Identifier Table for Test1
+--------------------------
+
+Id		Category		Type
+--		--------		----
+main		function		classes
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+my_list		variable		integer
+my_list_tl		variable		integer
+r		variable		integer
+h		variable		integer
+i		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char * argv[]) {
+int my_list[100] ;
+int my_list_tl[100] ;
+int r;
+int h;
+int i;
+{
+r = 2;
+while (r < 5) {
+my_list[r - 2] = r;
+r = r + 1;
+}
+h = my_list[0];
+i = r;
+while (i > 0) {
+my_list_tl[i - 1] = my_list[i];
+i = i - 1;
+}
+}
+printf("%d\n", h);
+printf("%d\n", my_list_tl[0]);
+}
+
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test2.java
+Source Program
+--------------
+
+// Test2.java
+
+// This program tests non-local referencing.
+
+import java.util.*;
+
+class Test2 {
+
+  static int h;  // non-local variable
+
+  public static int area (int x, int y) {
+    int z;
+    z = 2 * (x * y + (x * h) + y * h);
+    return z;
+  }
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int a; int b; int s;
+    {
+      a = in . nextInt ();
+      b = in . nextInt ();
+      h = in . nextInt ();
+      s = area (a, b);
+    }
+    System . out . println (s);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test2		classes		classes
+
+Identifier Table for Test2
+--------------------------
+
+Id		Category		Type
+--		--------		----
+h		variable		integer
+area		function		integer
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for area
+-------------------------
+
+Id		Category		Type
+--		--------		----
+x		parameter		integer
+y		parameter		integer
+z		variable		integer
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+a		variable		integer
+b		variable		integer
+s		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int h;
+int area(int x, int y){
+int z;
+z = 2 * (x * y + (x * h) + y * h);
+return z;
+}
+int main(int argc, char * argv[]) {
+int a;
+int b;
+int s;
+{
+scanf("%d", &a);
+scanf("%d", &b);
+scanf("%d", &h);
+s = area(a, b);
+}
+printf("%d\n", s);
+}
+
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test3.java
+Source Program
+--------------
+
+// Test3.java
+
+import java.util.*;
+
+// This program tests recursive functions.
+
+class Test3 {
+
+  public static int facto (int x) {
+    int s;
+    if (x == 1)
+      s = 1;
+    else
+      s = x * facto (x - 1);
+    return s;
+  }
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int i; int fac;
+    {
+      i = in . nextInt ();
+      fac = facto (i);
+    }
+    System . out . println (fac);
+  }
+}
+
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test3		classes		classes
+
+Identifier Table for Test3
+--------------------------
+
+Id		Category		Type
+--		--------		----
+facto		function		integer
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for facto
+--------------------------
+
+Id		Category		Type
+--		--------		----
+x		parameter		integer
+s		variable		integer
+
+Identifier Table for facto
+--------------------------
+
+Id		Category		Type
+--		--------		----
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+i		variable		integer
+fac		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int facto(int x){
+int s;
+if (x == 1) s = 1;
+else s = x * facto(x - 1);
+return s;
+}
+int main(int argc, char * argv[]) {
+int i;
+int fac;
+{
+scanf("%d", &i);
+fac = facto(i);
+}
+printf("%d\n", fac);
+}
+
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test4.java
+Source Program
+--------------
+
+// Test4.java
+
+import java.util.*;
+
+// This program tests arrays passed as parameters.
+
+class Test4 {
+
+  public static int f (int a [], int i) {
+    int x;
+    x = a [i];
+    a [i] = 0;
+    i = 622;
+    return x;
+  }
+
+  public static void main (String args []) {
+    int b [] = new int [100];
+    int i; int n;
+    n = 40;
+    i = 0;
+    while (i < 100) {
+      b [i] = i * i;
+      i = i + 1;
+    }
+    System . out . println (n);
+    System . out . println (f (b, n));
+    System . out . println (n);		// n should be unchanged
+    System . out . println (b [n]);	// b [n] should be 0
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test4		classes		classes
+
+Identifier Table for Test4
+--------------------------
+
+Id		Category		Type
+--		--------		----
+f		function		integer
+main		function		integer
+
+Identifier Table for f
+----------------------
+
+Id		Category		Type
+--		--------		----
+a		parameter		integer
+i		parameter		integer
+x		variable		integer
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+b		variable		integer
+n		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int f(int a, int i){
+int x;
+x = a[i];
+a[i] = 0;
+i = 622;
+return x;
+}
+int main(int argc, char * argv[]) {
+int b[100] ;
+int i;
+int n;
+n = 40;
+i = 0;
+while (i < 100) {
+b[i] = i * i;
+i = i + 1;
+}
+printf("%d\n", n);
+printf("%d\n", f(b, n));
+printf("%d\n", n);
+printf("%d\n", b[n]);
+}
+
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test5.java
+Source Program
+--------------
+
+// Test5.java
+
+import java.util.*;
+
+// This program tests class definitions.
+
+class List {
+
+  int length;
+  int max;
+  int list [] = new int [100];
+
+  public int initialize (int n) {
+    int flag;
+    int i;
+    max = 100;
+    if (n <= 0 || n > max)
+      flag = 0;
+    else
+      flag = n;
+    return flag;
+  }
+
+  public int length () { return this . length; }
+
+  public boolean nil () {
+    boolean nul;
+    if (length > 0)
+      nul = false;
+    else
+      nul = true;
+    return nul;
+  }
+
+  public List cons (int a) {
+    int i;
+    List cons_list;
+    cons_list = new List ();
+    cons_list . length = cons_list . initialize (Syntax error
+Couldn't repair and continue parse
+Error in invoking parser/lexer
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test6.java
+Source Program
+--------------
+
+// Test6.java
+
+import java.util.*;
+
+class Test6 {
+
+  static Scanner in = new Scanner (System . in);
+
+  public static void main (String args []) {
+    int q; int r; int x; int y;
+    x = in . nextInt ();
+    y = in . nextInt ();
+    q = 0;
+    r = x;
+    while (r >= y) {
+      q = q + 1;
+      r = r - y;
+    }
+    System . out . println (q);
+    System . out . println (r);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test6		classes		classes
+
+Identifier Table for Test6
+--------------------------
+
+Id		Category		Type
+--		--------		----
+in		Scanner		Scanner
+main		function		Scanner
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+q		variable		integer
+r		variable		integer
+x		variable		integer
+y		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char * argv[]) {
+int q;
+int r;
+int x;
+int y;
+scanf("%d", &x);
+scanf("%d", &y);
+q = 0;
+r = x;
+while (r >= y) {
+q = q + 1;
+r = r - y;
+}
+printf("%d\n", q);
+printf("%d\n", r);
+}
+
+adb0026@cse01:~/4650/7.2$ java -cp .:java-cup-11a-runtime.jar TinyJavaParsST < tests/Test7.java
+Source Program
+--------------
+
+// Test7.java
+
+import java.util.*;
+
+// This class performs matrix multiplication.
+
+class Test7 {
+
+  public static int initializeMatrix (int matrix [][], int n1, int n2) {
+    int i; int j;
+    i = 0;
+    while (i < n1) {
+      j = 0;
+      while (j < n2) {
+        matrix [i][j] = (n1 - i) * (n2 - j);
+        j = j + 1;
+      }
+      i = i + 1;
+    }
+    return 1;
+  }
+
+  public static int printMatrix (int matrix [][], int n1, int n2) {
+    int i; int j;
+    i = 0;
+    while (i < n1) {
+      j = 0;
+      while (j < n2) {
+        System . out . println (matrix [i][j]);
+        j = j + 1;
+      }
+      i = i + 1;
+    }
+    return 1;
+  }
+
+  public static int multiplyMatrix (int a [][], int b [][], int c [][],
+      int n1, int n2, int n3) {
+    int i; int j; int k;
+    i = 0;
+    while (i < n1) {
+      j = 0;
+      while (j < n3) {
+        k = 0;
+        c [i][j] = 0;
+        while (k < n2) {
+          c [i][j] = c [i][j] + a [i][k] * b [k][j];
+          k = k + 1;
+        }
+        j = j + 1;
+      }
+      i = i + 1;
+    }
+    return 1;
+  }
+
+  public static void main (String args []) {
+    int matrixA [][] = new int [4][3];
+    int matrixB [][] = new int [3][2];
+    int matrixC [][] = new int [4][2];
+    int i;
+    i = initializeMatrix (matrixA, 4, 3);
+    System . out . println (10431043);
+    i = printMatrix (matrixA, 4, 3);
+    i = initializeMatrix (matrixB, 3, 2);
+    System . out . println (11321132);
+    i = printMatrix (matrixB, 3, 2);
+    i = multiplyMatrix (matrixA, matrixB, matrixC, 4, 3, 2);
+    System . out . println (12421242);
+    i = printMatrix (matrixC, 4, 2);
+    // example from http://en.wikipedia.org/wiki/Matrix_multiplication
+    matrixA [0][0] = 14; matrixA [0][1] =  9; matrixA [0][2] =  3;
+    matrixA [1][0] =  2; matrixA [1][1] = 11; matrixA [1][2] = 15;
+    matrixA [2][0] =  0; matrixA [2][1] = 12; matrixA [2][2] = 17;
+    matrixA [3][0] =  5; matrixA [3][1] =  2; matrixA [3][2] =  3;
+    matrixB [0][0] = 12; matrixB [0][1] = 25;
+    matrixB [1][0] =  9; matrixB [1][1] = 10;
+    matrixB [2][0] =  8; matrixB [2][1] =  5;
+    i = multiplyMatrix (matrixA, matrixB, matrixC, 4, 3, 2);
+    System . out . println (12421242);
+    i = printMatrix (matrixC, 4, 2);
+  }
+
+}
+
+##### SYMBOL TABLE #####
+
+Identifier Table for Class
+--------------------------
+
+Id		Category		Type
+--		--------		----
+Test7		classes		classes
+
+Identifier Table for Test7
+--------------------------
+
+Id		Category		Type
+--		--------		----
+initializeMatrix		function		integer
+main		function		integer
+
+Identifier Table for initializeMatrix
+-------------------------------------
+
+Id		Category		Type
+--		--------		----
+matrix		parameter		integer
+n1		parameter		integer
+n2		parameter		integer
+i		variable		integer
+j		variable		integer
+printMatrix		function		integer
+
+Identifier Table for printMatrix
+--------------------------------
+
+Id		Category		Type
+--		--------		----
+multiplyMatrix		function		integer
+
+Identifier Table for multiplyMatrix
+-----------------------------------
+
+Id		Category		Type
+--		--------		----
+a		parameter		integer
+b		parameter		integer
+c		parameter		integer
+n3		parameter		integer
+k		variable		integer
+
+Identifier Table for main
+-------------------------
+
+Id		Category		Type
+--		--------		----
+matrixA		variable		integer
+matrixB		variable		integer
+matrixC		variable		integer
+
+##### EQUIVALENT C CODE #####
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int initializeMatrix(int matrix, int n1, int n2){
+int i;
+int j;
+i = 0;
+while (i < n1) {
+j = 0;
+while (j < n2) {
+matrix[i][j] = (n1 - i) * (n2 - j);
+j = j + 1;
+}
+i = i + 1;
+}
+return 1;
+}
+int printMatrix(int matrix, int n1, int n2){
+int i;
+int j;
+i = 0;
+while (i < n1) {
+j = 0;
+while (j < n2) {
+printf("%d\n", matrix[i][j]);
+j = j + 1;
+}
+i = i + 1;
+}
+return 1;
+}
+int multiplyMatrix(int a, int b, int c, int n1, int n2, int n3){
+int i;
+int j;
+int k;
+i = 0;
+while (i < n1) {
+j = 0;
+while (j < n3) {
+k = 0;
+c[i][j] = 0;
+while (k < n2) {
+c[i][j] = c[i][j] + a[i][k] * b[k][j];
+k = k + 1;
+}
+j = j + 1;
+}
+i = i + 1;
+}
+return 1;
+}
+int main(int argc, char * argv[]) {
+int matrixA[4] [3] ;
+int matrixB[3] [2] ;
+int matrixC[4] [2] ;
+int i;
+i = initializeMatrix(matrixA, 4, 3);
+printf("%d\n", 10431043);
+i = printMatrix(matrixA, 4, 3);
+i = initializeMatrix(matrixB, 3, 2);
+printf("%d\n", 11321132);
+i = printMatrix(matrixB, 3, 2);
+i = multiplyMatrix(matrixA, matrixB, matrixC, 4, 3, 2);
+printf("%d\n", 12421242);
+i = printMatrix(matrixC, 4, 2);
+matrixA[0][0] = 14;
+matrixA[0][1] = 9;
+matrixA[0][2] = 3;
+matrixA[1][0] = 2;
+matrixA[1][1] = 11;
+matrixA[1][2] = 15;
+matrixA[2][0] = 0;
+matrixA[2][1] = 12;
+matrixA[2][2] = 17;
+matrixA[3][0] = 5;
+matrixA[3][1] = 2;
+matrixA[3][2] = 3;
+matrixB[0][0] = 12;
+matrixB[0][1] = 25;
+matrixB[1][0] = 9;
+matrixB[1][1] = 10;
+matrixB[2][0] = 8;
+matrixB[2][1] = 5;
+i = multiplyMatrix(matrixA, matrixB, matrixC, 4, 3, 2);
+printf("%d\n", 12421242);
+i = printMatrix(matrixC, 4, 2);
+}
+
+adb0026@cse01:~/4650/7.2$
